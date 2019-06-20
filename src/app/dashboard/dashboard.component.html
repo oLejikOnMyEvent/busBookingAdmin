@@ -3,6 +3,7 @@
 
     <div class="card">
       <div class="card-body">
+     
         <select class="custom-select col-lg-2" id="inputGroupSelect01" >
           <option selected>Пункт Отправления</option>
           <option value="1">Москва</option>
@@ -10,32 +11,52 @@
           <option value="3">Ростов</option>
         </select>
 
-        <select class="custom-select col-lg-2" id="inputGroupSelect01" style="margin-left: 20px;">
+       
+        <select class="custom-select col-lg-2 " id="inputGroupSelect02" style="margin-left: 20px;">
           <option selected>Пункт Прибытия</option>
           <option value="1">Москва</option>
           <option value="2">Махачкала </option>
           <option value="3">Воронеж</option>
         </select>
-        
+  
+       
+    
+       
+      
 
-        
-        <!-- <form class="form-inline">
-          <div class="form-group">
-            <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+     
+  
+        <div class="timePicker" style="margin-top: 50px;">
+            <h4>Время отправления </h4>
+            <ngb-timepicker [(ngModel)]="time"> </ngb-timepicker>
+      
+        </div>
+   
+
+        <form class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                       name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (focus)="d.open()" type="button"> Выбрать дату отправления</button>
+                </div>
               </div>
             </div>
-          </div>
-        </form> -->
-        
-        
+          </form>
+
+        <input type="text" class="form-control col-lg-2" placeholder="Цена" style="margin-top: 20px;">
         <hr>
         
-        
+    
 
+          <div class="buttonsAddCansel" style="margin-top:20px;">
+              <button type="button" class="btn btn-primary">Добавить</button>
+    
+              <button type="button" class="btn btn-danger">Отменить</button>
+            </div>
+               
+      
       </div>
 
 

@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,9 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 import {
   MatButtonModule,
@@ -20,8 +24,11 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+
+
 @NgModule({
   imports: [
+    NgbModule,
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
@@ -41,6 +48,7 @@ import {
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+  
   ]
 })
 
