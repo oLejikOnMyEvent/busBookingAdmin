@@ -4,29 +4,30 @@
     <div class="card">
       <div class="card-body">
      
-        <select class="custom-select col-lg-2" id="inputGroupSelect01" >
-          <option selected>Пункт Отправления</option>
-          <option value="1">Москва</option>
-          <option value="2">Махачкала</option>
-          <option value="3">Ростов</option>
-        </select>
 
-       
-        <select class="custom-select col-lg-2 " id="inputGroupSelect02" style="margin-left: 20px;">
-          <option selected>Пункт Прибытия</option>
-          <option value="1">Москва</option>
-          <option value="2">Махачкала </option>
-          <option value="3">Воронеж</option>
+
+     <div class="selectStations" *ngFor="let stations of allSelectStations, index as ind">
+        <select class="custom-select col-lg-2" id="inputGroupSelect01"  style="margin-top:10px;" (change)="onChange($event)"> 
+      <option selected *ngFor="let items of stations" [value]="items.id + items.title"  > {{items.id}}  - {{items.title}} </option>
         </select>
-  
-       
-    
+        
+        <!-- <button (click)="CheckOptions(stations)"> Check optons </button> -->
+        <button (click)="DeleteItem(ind)"  class="btn btn-default" style="margin-top: 15px;"> X </button>
+        <!-- <i class="material-icons" >clear</i> -->
+      </div>
+     
+
+        <div class="buttonAdd" style="margin-top: 20px;">
+            <button class="btn btn-info" (click)="addNewStations()"> Добавить Станцию </button>
+        </div>
+
+        <!-- <button class="CreateNew"  > Создать </button> -->
        
       
 
      
   
-        <div class="timePicker" style="margin-top: 50px;">
+        <!-- <div class="timePicker" style="margin-top: 50px;">
             <h4>Время отправления </h4>
             <ngb-timepicker [(ngModel)]="time"> </ngb-timepicker>
       
@@ -43,17 +44,19 @@
                 </div>
               </div>
             </div>
-          </form>
+          </form> -->
 
-        <input type="text" class="form-control col-lg-2" placeholder="Цена" style="margin-top: 20px;">
+        <!-- <input type="text" class="form-control col-lg-2" placeholder="Цена" style="margin-top: 20px;"> -->
+
+     
         <hr>
         
     
 
           <div class="buttonsAddCansel" style="margin-top:20px;">
-              <button type="button" class="btn btn-primary">Добавить</button>
+              <button type="button" class="btn btn-primary" (click)="CreateNewRoute()" >Создать </button>
     
-              <button type="button" class="btn btn-danger">Отменить</button>
+              <!-- <button type="button" class="btn btn-danger">Отменить</button> -->
             </div>
                
       
