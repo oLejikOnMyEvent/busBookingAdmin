@@ -8,7 +8,8 @@ export class AddNewRouteService {
 
 
   stationUrl = 'http://192.168.2.11:8080/stations';
-
+  
+  addStationsUrl = 'http://192.168.2.11:8080/admin/route'
   constructor(private http: HttpClient) {
    }
 
@@ -16,5 +17,14 @@ export class AddNewRouteService {
    
   getAllStations(){
     return this.http.get<{ id: number; title: string; }[]>(this.stationUrl);
+  }
+
+  postAllStations(routeTitle, data){
+    let dataObj ={
+      routeTitle: routeTitle,
+      stations: data
+    }
+
+    return this.http.post(this.addStationsUrl, dataObj)
   }
 }

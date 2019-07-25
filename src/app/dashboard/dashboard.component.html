@@ -3,30 +3,32 @@
 
     <div class="card">
       <div class="card-body">
-     
 
+          <input type="text"  [(ngModel)]="routeName"> Введите название маршрута
 
-     <div class="selectStations" *ngFor="let stations of allSelectStations, index as ind">
-        <select class="custom-select col-lg-2" id="inputGroupSelect01"  style="margin-top:10px;" (change)="onChange($event)"> 
-      <option selected *ngFor="let items of stations" [value]="items.id + items.title"  > {{items.id}}  - {{items.title}} </option>
-        </select>
-        
-        <!-- <button (click)="CheckOptions(stations)"> Check optons </button> -->
-        <button (click)="DeleteItem(ind)"  class="btn btn-default" style="margin-top: 15px;"> X </button>
-        <!-- <i class="material-icons" >clear</i> -->
-      </div>
-     
+        <div class="selectStations" *ngFor="let stations of allSelectStations, index as i">
+          <select class="custom-select col-lg-2" id="inputGroupSelect01" style="margin-top:10px;"
+            (change)="onChange($event)">
+            <option selected *ngFor="let items of stations" [value]="items.id + items.title" [ngValue]=items
+              value={{items.id}}> {{items.title}} </option>
+          </select>
+
+          <!-- <button (click)="CheckOptions(stations)"> Check optons </button> -->
+          <button type="button" (click)="DeleteItem(i)" class="btn btn-default" style="margin-top: 15px;"> X </button>
+          <!-- <i class="material-icons" >clear</i> -->
+        </div>
+
 
         <div class="buttonAdd" style="margin-top: 20px;">
-            <button class="btn btn-info" (click)="addNewStations()"> Добавить Станцию </button>
+          <button type="button" class="btn btn-info" (click)="addNewStations()"> Добавить Станцию </button>
         </div>
 
         <!-- <button class="CreateNew"  > Создать </button> -->
-       
-      
 
-     
-  
+
+
+
+
         <!-- <div class="timePicker" style="margin-top: 50px;">
             <h4>Время отправления </h4>
             <ngb-timepicker [(ngModel)]="time"> </ngb-timepicker>
@@ -48,21 +50,42 @@
 
         <!-- <input type="text" class="form-control col-lg-2" placeholder="Цена" style="margin-top: 20px;"> -->
 
-     
-        <hr>
-        
-    
 
-          <div class="buttonsAddCansel" style="margin-top:20px;">
-              <button type="button" class="btn btn-primary" (click)="CreateNewRoute()" >Создать </button>
-    
-              <!-- <button type="button" class="btn btn-danger">Отменить</button> -->
-            </div>
-               
-      
+        <hr>
+        <form [formGroup]="stationsSelectors">
+
+          <div class="formSelectors" *ngFor="let $selectStation of stations.controls; index as idx" [formGroup]='stations' >
+            <select class="custom-select col-lg-3" id="inputGroupSelect012" style="margin-top:10px;" >
+              <option selected disabled>Выберите станцию</option>
+              <option > </option>
+            </select>
+
+            <button type="button" (click)="DeleteItemFormArray(idx)" class="btn btn-default" style="margin-top: 15px;"> X </button>
+        
+          </div>
+
+        
+
+
+          <span> {{stationsSelectors.value | json}} </span>
+        </form>
+
+        <div class="buttonAdd" style="margin-top: 20px;">
+          <button type="button" (click)="addNewStationsTest()"> Добавить Станцию </button>
+        </div>
+
+        <div class="buttonsAddCansel" style="margin-top:20px;">
+          <button type="button" class="btn btn-primary" (click)="CreateNewRoute(); ShowData()">Создать </button>
+
+          <!-- <button type="button" class="btn btn-danger">Отменить</button> -->
+        </div>
+
+
+
+
       </div>
 
 
     </div>
-      </div>
+  </div>
 </div>

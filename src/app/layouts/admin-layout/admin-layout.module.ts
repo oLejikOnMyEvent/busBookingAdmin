@@ -39,6 +39,7 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    ReactiveFormsModule
   ],
   declarations: [
     DashboardComponent,

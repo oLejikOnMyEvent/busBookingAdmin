@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
@@ -43,6 +43,7 @@ import { AuthComponent } from './auth/auth.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     ComponentsModule,
     RouterModule,

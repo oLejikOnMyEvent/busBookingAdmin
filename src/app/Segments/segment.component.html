@@ -5,13 +5,23 @@
       <div class="card-body">
      
 
-        <div class="selectStations">
-          <select class="custom-select col-lg-2" id="inputGroupSelect01"  style="margin-top:10px;" >
-        <option selected>1  </option>
-        <option selected>2  </option>
+        <div class="selectStations" >
+          <select class="custom-select col-lg-2" id="inputGroupSelect01"  style="margin-top:10px;" (change)="onChange($event)" >
+            <option selected disabled>Выберите номер маршрута</option>
+        <option *ngFor="let routeTitle of route" value={{routeTitle.id}}>  {{routeTitle.title}} </option>
+
           </select>
           
+          <div>
           <input  class="form-control col-lg-1" placeholder="Номер рейса" >
+          
+          <select class="custom-select col-lg-2" id="inputGroupSelect01"  style="margin-top:10px;" (change)="busSelect($event)" >
+        
+        <option selected disabled >  Выберите Автобус </option>
+        <option *ngFor="let bus of busSelector" [value]=bus.id> {{bus.title}} {{bus.seatsCount}}  </option>
+        
+          </select>
+        </div>
         </div>
 
 
@@ -22,118 +32,38 @@
         <!-- <div class="timePicker" style="margin-top: 50px;">
             <ngb-timepicker [(ngModel)]="time"> </ngb-timepicker>
           </div> -->
+        
 
-
-      <form class="form-inline">
+      <form class="form-inline" *ngFor="let segments of segmentSelect">
          
           <div class="form-group">
             
              
             <div class="input-group">
 
-         <p>Название сегмета например москва воронеж махачкала </p>
+              <p >{{segments.segmentDto.title}} </p>
 
               <input  placeholder="дата отправления" style="margin-left: 50px;"
-                     name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (focus)="d.open()" type="button"> Дата </button>
+                     name="dp" [(ngModel)]="model" >
+            
+                     <input class="form-control col-lg-1" style="margin-left: 20px;" placeholder="HH" >
+                     <input  class="form-control col-lg-1" style="margin-left: 20px;" placeholder="MM" >
 
-                
-              </div>
+                     <input  placeholder="дата прибытия" style="margin-left: 50px;"
+                     name="dp" [(ngModel)]="model" >
 
+                     <input class="form-control col-lg-1" style="margin-left: 20px;" placeholder="HH" >
+                     <input  class="form-control col-lg-1" style="margin-left: 20px;" placeholder="MM" >
 
-
-              <input  placeholder="дата прибытия" style="margin-left: 20px;"
-                     name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (focus)="d.open()" type="button"> Дата </button>
-
-                
-              </div>
-              <input type="text" class="form-control col-lg-2" placeholder="Цена" style="margin-left: 20px;">
-              
-              <input class="form-control col-lg-1" style="margin-left: 20px;" placeholder="MM">
-              <input  class="form-control col-lg-1" style="margin-left: 20px;" placeholder="HH">
+              <input type="text" class="form-control col-lg-1" style="margin-left: 20px;" [value]="segments.segmentDto.price"> Цена
+              {{segments.segmentDto.id}}
+           
             </div>
           </div>
 
           
     
         </form>
-
-        <form class="form-inline">
-         
-            <div class="form-group">
-              
-               
-              <div class="input-group">
-  
-           <p>Название сегмета например москва воронеж махачкала </p>
-  
-                <input  placeholder="дата отправления" style="margin-left: 50px;"
-                       name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary calendar" (focus)="d.open()" type="button"> Дата </button>
-  
-                  
-                </div>
-  
-  
-  
-                <input  placeholder="дата прибытия" style="margin-left: 20px;"
-                       name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary calendar" (focus)="d.open()" type="button"> Дата </button>
-  
-                  
-                </div>
-                <input type="text" class="form-control col-lg-2" placeholder="Цена" style="margin-left: 20px;">
-                
-                <input class="form-control col-lg-1" style="margin-left: 20px;" placeholder="MM">
-                <input  class="form-control col-lg-1" style="margin-left: 20px;" placeholder="HH">
-              </div>
-            </div>
-  
-            
-      
-          </form>
-
-          <form class="form-inline">
-         
-              <div class="form-group">
-                
-                 
-                <div class="input-group">
-    
-             <p>Название сегмета например москва воронеж махачкала </p>
-    
-                  <input  placeholder="дата отправления" style="margin-left: 50px;"
-                         name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (focus)="d.open()" type="button"> Дата </button>
-    
-                    
-                  </div>
-    
-    
-    
-                  <input  placeholder="дата прибытия" style="margin-left: 20px;"
-                         name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (focus)="d.open()" type="button"> Дата </button>
-    
-                    
-                  </div>
-                  <input type="text" class="form-control col-lg-2" placeholder="Цена" style="margin-left: 20px;">
-                  
-                  <input class="form-control col-lg-1" style="margin-left: 20px;" placeholder="MM">
-                  <input  class="form-control col-lg-1" style="margin-left: 20px;" placeholder="HH">
-                </div>
-              </div>
-    
-              
-        
-            </form>
 
        
    
