@@ -146,7 +146,7 @@ export class DashboardComponent implements OnInit {
       id: parseInt(newVal[0]),
       title: newStr
     }
-    this.selectedObj.push(newObj)
+    // this.selectedObj.push(newObj)
     console.log(newObj, typeof newObj);
     console.log(this.selectedObj, typeof this.selectedObj);
 
@@ -167,3 +167,19 @@ export class DashboardComponent implements OnInit {
   }
 }
 
+// 0:
+// id: 14
+// routeDto:
+// id: 1
+// title: "Мск-Тмбв-Мхч"
+// vector: "==1==9==10==8==11=="
+// __proto__: Object
+// segmentDto: {id: 3, title: "Москва-Тамбов", stationStart: {…}, stationFinish: {…}, price: 1200}
+// __proto__: Object
+
+// segmentDto:
+// id: 3
+// price: 1200
+// stationFinish: {id: 9, title: "Тамбов"}
+// stationStart: {id: 1, title: "Москва"}
+// title: "Москва-Тамбов"

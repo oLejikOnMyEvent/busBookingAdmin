@@ -42,3 +42,8 @@ export class AddSegmentsService {
     return this.http.get(this.busAddress);
   }
 }
+
+//http://192.168.2.11:8080/admin/bookings -- все бронирования(купленные билеты)
+//http://192.168.2.11:8080/admin/users -- все учетные записи 
+//http://192.168.2.11:8080/admin/trip -- номера всех рейсов
+//http://192.168.2.11:8080/admin/trip/${num} --номер текущего рейса
