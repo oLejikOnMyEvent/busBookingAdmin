@@ -3,6 +3,7 @@ import * as Chartist from 'chartist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { AddSegmentsService } from '../service/add-segments.service'
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 
 
 
@@ -35,6 +36,51 @@ export class SegmentComponent implements OnInit {
 
 
   segmentSelectId: any;
+
+
+
+  HHtimeDeparture = "";
+  MMtimeDeparture = "";
+  dataDeparture = '';
+  timeDeparture = "timeDeparture";
+  timeDepatruteValue =`${this.dataDeparture} ${this.HHtimeDeparture}:${this.MMtimeDeparture}`
+
+
+
+
+  HHtimeArrival: "";
+  MMtimeArrival: "";
+  dataArrival: '';
+  timeArrival = "timeArrival";
+  timeArrivalValue =`${this.dataArrival} ${this.HHtimeArrival}:${this.MMtimeArrival}`
+
+
+  // DynamicForm: FormGroup;
+  segmentPriceName = "segmentPrice";
+  segmentPriceValue = ''
+  tripNumber = "tripNumber"
+  tripNumberValue = ""
+  routeSegmentId = "routeSegmentId"
+
+  busIdName = "busId"
+  busIdValue: number;
+  test = 'privet';
+
+
+  DynamicForm = new FormGroup({
+    [this.tripNumber]: new FormControl(this.tripNumberValue),
+    [this.routeSegmentId]: new FormControl(null),
+    [this.timeDeparture]: new FormControl(this.timeDepatruteValue),
+    [this.segmentPriceName]: new FormControl(this.segmentSelect),
+    [this.timeArrival]: new FormControl(this.timeArrivalValue),
+    [this.busIdName]: new FormControl(this.busIdValue)
+  })
+
+  FormValue = new FormArray([
+    
+  ])
+
+ 
   ngOnInit() {
     this.AddSegmentsService.getRouteNumber()
       .subscribe(
@@ -50,7 +96,7 @@ export class SegmentComponent implements OnInit {
     this.AddSegmentsService.getBusList()
       .subscribe(
         (response) => {
-        this.busSelector = response, console.log(this.busSelector);
+          this.busSelector = response, console.log(this.busSelector);
         },
         error => console.log(error)
       )
@@ -62,27 +108,33 @@ export class SegmentComponent implements OnInit {
     this.AddSegmentsService.getAdminRoute(newVal)
       .subscribe(
         (response) => {
-          
+
           this.segmentSelect = response
-        // this.segmentSelectId = this.segmentSelect.map(item => item.id),
-        // console.log(this.segmentSelectId, "segment select")
-        
+          console.log(this.segmentSelect, this.segmentSelect.length);
+
+          // this.segmentSelectId = this.segmentSelect.map(item => item.id),
+          // console.log(this.segmentSelectId, "segment select")
+
         },
         (error) => console.log(error)
       )
+
 
   }
   busSelect(event): void {
     const newVal: string = event.target.value;
     this.busId = newVal;
- 
+
   }
 
   createNewTrips() {
-    this.AddSegmentsService.createNewTrip(this.busId, this.segmentSelectId)
-      .subscribe(
-        response => console.log(response),
-        error => console.log(error)
-      )
+    console.log(this.DynamicForm.value);
+
+
+    // this.AddSegmentsService.createNewTrip()
+    //   .subscribe(
+    //     response => console.log(response),
+    //     error => console.log(error)
+    //   )
   }
 }

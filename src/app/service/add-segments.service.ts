@@ -22,17 +22,18 @@ export class AddSegmentsService {
     return this.http.get(`http://192.168.2.11:8080/admin/trip/add/${id}`)
   }
 
-  createNewTrip(busId, routeSegmentId ) {
-    let data = {
-      tripNumber: 1,
-      routeSegmentId: routeSegmentId,
-      timeDeparture: "2019-08-01 18:10",
-      timeArrival: "2019-08-02 02:00",
-      segmentPrice: 1500,
-      busId: busId
+  // createNewTrip(busId, segmentPrice, timeArrival, timeDeparture, routeSegmentId, tripNumber ) {
+  //   let data = {
+  //     tripNumber: 1,
+  //     routeSegmentId: routeSegmentId,
+  //     timeDeparture: "2019-08-01 18:10",
+  //     timeArrival: "2019-08-02 02:00",
+  //     segmentPrice: 1500,
+  //     busId: busId
 
-    }
+  //   }
 
+  createNewTrip(data) {
   return this.http.post('http://192.168.2.11:8080/admin/trip/add', data)
   }
 
