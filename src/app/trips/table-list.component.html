@@ -7,90 +7,64 @@
 
                     <select class="custom-select col-lg-3" id="inputGroupSelect01"
                         style="margin-top:10px; margin-left:20px;" (change)="onChange($event)">
-                        <option selected> выберите номер Рейса </option>
+                        <option selected disabled> выберите номер Рейса </option>
                         <option *ngFor="let tripNum of arrOfTrips"> {{tripNum}} </option>
 
                     </select>
+
+                    <div class="tripTitle" *ngIf="fullTrip"  style="margin-left:20px;" >
+                        <h3>{{fullTrip[0].routeTitle}} </h3> 
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" >
                                 <thead class=" text-primary">
-                                    <th> Номер Рейса </th>
+                             
                                     <th>
                                         Маршрут
                                     </th>
                                     <th>
-                                        Время отправления
+                                      Дата отправления
                                     </th>
                                     <th>
-                                        дата отправления
+                                     Дата прибытия
                                     </th>
                                     <th>
                                         Вместимость
                                     </th>
 
                                     <th>
-
+                                        Цена
                                     </th>
 
                                 </thead>
-                                <tbody>
+                                <tbody *ngFor="let trips of fullTrip">
                                     <tr>
+                                        
                                         <td>
-                                            88
+                                         {{trips.segmentTitle}}
                                         </td>
                                         <td>
-                                            Москва - Махачкала
+                                       {{trips.timeDeparture | date}} 
                                         </td>
                                         <td>
-                                            07 :00
-                                        </td>
-                                        <td>
-                                            01.01.2019
+                                            {{trips.timeArrival | date}}
                                         </td>
                                         <td class="text-primary">
-                                            34
+                                           {{trips.busDto.seatsCount}}
 
 
                                         </td>
-
-                                        <td>
-
-                                            <button mat-raised-button class="btn btn-danger">Отменить</button>
-                                        </td>
-
-
+                                        <th>
+                                            {{trips.segmentPrice}}
+                                        </th>
+                                      
+                                       
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            14
-                                        </td>
-                                        <td>
-                                            Москва -Воронеж
-                                        </td>
-                                        <td>
-                                            08 :00
-                                        </td>
-                                        <td>
-                                            01.01.2019
-                                        </td>
-                                        <td class="text-primary">
-                                            35
-
-
-                                        </td>
-
-
-                                        <td>
-
-                                            <button mat-raised-button class="btn btn-danger"
-                                                (click)="deleteItem()">Удалить</button>
-                                        </td>
-
-
-                                    </tr>
-
+                                   
                                 </tbody>
+                                <button mat-raised-button class="btn btn-danger"
+                                (click)="deleteItem()">Удалить</button>
                             </table>
                         </div>
                     </div>

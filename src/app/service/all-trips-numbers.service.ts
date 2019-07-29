@@ -8,14 +8,14 @@ export class AllTripsNumbersService {
 
   constructor(private http: HttpClient) { }
 
-  // getTripsNumber(){
-  //   return this.http.get('http://192.168.2.11:8080/admin/trip')
+  getTripsNumber(){
+    return this.http.get('http://192.168.2.11:8080/admin/trip')
 
-  // }
+  }
 
-  // getFullTrip(id){
-  //   return this.http.get(`http://192.168.2.11:8080/admin/trip/${id}`)
-  // }
+  getFullTrip(id){
+    return this.http.get(`http://192.168.2.11:8080/admin/trip/${id}`)
+  }
 
   getTripsNumObj = [
     25,
@@ -27,9 +27,9 @@ export class AllTripsNumbersService {
     20,
     600
   ]
-  getTripsNumber() {
-    return of(this.getTripsNumObj)
-  }
+  // getTripsNumber() {
+  //   return of(this.getTripsNumObj)
+  // }
 
 
   getFullTripObj = [
@@ -37,13 +37,13 @@ export class AllTripsNumbersService {
       data: 'Present data'
     }
   ]
-  getFullTrip(id) {
-    console.log(id)
-    return of(this.getFullTripObj)
-  }
+  // getFullTrip(id) {
+  //   console.log(id)
+  //   return of(this.getFullTripObj)
+  // }
 
 
   deleteTrip(id) {
-    return of(console.log('delete', id))
+    return this.http.delete(`http://192.168.2.11:8080/admin/trip/${id}`)
   }
 }

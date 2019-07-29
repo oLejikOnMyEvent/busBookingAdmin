@@ -22,12 +22,12 @@ export class AllUsersService {
   constructor(private http: HttpClient) { }
 
 
-  // getAllUsers(){
-  //   return this.http.get('http://192.168.2.11:8080/admin/users');
-  // }
-
-
-  getAllUsers() {
-    return of(this.testobj);
+  getAllUsers(){
+    return this.http.get('http://192.168.2.11:8080/admin/users');
   }
+
+
+  // getAllUsers() {
+  //   return of(this.testobj);
+  // }
 }

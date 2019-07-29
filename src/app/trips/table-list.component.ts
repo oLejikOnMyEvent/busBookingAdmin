@@ -39,7 +39,15 @@ export class TableListComponent implements OnInit {
   }
 
   deleteItem() {
-    this.AllTripsNumbersService.deleteTrip(this.deleteItemId)
-
+    let conf = confirm(`Вы - точно хотите удалить маршрут?${this.deleteItemId}`);
+    if (conf === true) {
+      this.AllTripsNumbersService.deleteTrip(this.deleteItemId)
+      .subscribe(
+       res => console.log(res),
+       err => console.log(err)
+       
+       
+      )
+    }
   }
 }
