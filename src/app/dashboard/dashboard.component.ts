@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -52,10 +52,9 @@ export class DashboardComponent implements OnInit {
 
 
   allStatins: any;
-
   routeName: string = ' '
   selectedObj: string[] = []
-  constructor(private AddNewRouteService: AddNewRouteService) { }
+  constructor(private AddNewRouteService: AddNewRouteService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.AddNewRouteService.getAllStations()
@@ -78,6 +77,20 @@ export class DashboardComponent implements OnInit {
   })
 
 
+
+
+  addStationFromGroup(): FormGroup{
+   return this.fb.group({
+     stations: new FormControl(''),
+     stationsWithObj: new FormControl(this.allStatins)
+   })
+  }
+
+
+
+
+
+
   stationSelectTest() {
     let otherStat = [{
       id: 1,
@@ -98,7 +111,8 @@ export class DashboardComponent implements OnInit {
 
 
   addNewStationsTest() {
-    this.stations.push(new FormControl(this.testObjOne))
+    console.log('tipa new statiosn');
+    // (<FormArray>this..get('skills')).push(this.addSkillFormGroup());
   }
 
   DeleteItemFormArray(idx) {
@@ -109,6 +123,8 @@ export class DashboardComponent implements OnInit {
   public addStationSelector() {
 
   }
+
+  
   addNewStations() {
 
 

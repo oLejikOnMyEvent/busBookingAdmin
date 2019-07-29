@@ -52,22 +52,22 @@
 
 
         <hr>
-        <form [formGroup]="stationsSelectors">
+        <form>
 
-          <div class="formSelectors" *ngFor="let $selectStation of stations.controls; index as idx" [formGroup]='stations' >
+          <div class="formSelectors">
+            <div >
             <select class="custom-select col-lg-3" id="inputGroupSelect012" style="margin-top:10px;" >
               <option selected disabled>Выберите станцию</option>
-              <option > </option>
+              <option >   </option>
             </select>
 
-            <button type="button" (click)="DeleteItemFormArray(idx)" class="btn btn-default" style="margin-top: 15px;"> X </button>
-        
+            <button type="button" class="btn btn-default" style="margin-top: 15px;"> X </button>
+          </div>
           </div>
 
         
 
-
-          <span> {{stationsSelectors.value | json}} </span>
+              <pre> tut buid json</pre>
         </form>
 
         <div class="buttonAdd" style="margin-top: 20px;">
