@@ -5,15 +5,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
-import { UserProfileComponent } from '../../user-profile/user-profile.component';
-import { TableListComponent } from '../../table-list/table-list.component';
+import { UserProfileComponent } from '../../buyedTickets/user-profile.component';
+import { TableListComponent } from '../../trips/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
 import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { SegmentComponent } from '../../Segments/segment.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { UserListComponent } from '../../userList/user-list.component'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -50,8 +51,9 @@ import {
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-    SegmentComponent
+    SegmentComponent,
+    UserListComponent
   ]
 })
 
-export class AdminLayoutModule {}
+export class AdminLayoutModule { }

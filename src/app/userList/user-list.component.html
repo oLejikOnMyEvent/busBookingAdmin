@@ -1,0 +1,43 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th> Номер пользователя </th>
+
+                  <th>
+                    Логин пользователя
+                  </th>
+                  <th>
+                    Полное имя пользователя
+                  </th>
+
+                </thead>
+                <tbody *ngFor="let user of userList; let i=index">
+                  <tr>
+                    <td>
+                      {{i+1}}
+                    </td>
+                    <td>
+                      {{user.userFullName}}
+                    </td>
+
+                    <td>
+                      {{user.userName}}
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

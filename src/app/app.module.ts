@@ -57,7 +57,6 @@ import { AuthComponent } from './auth/auth.component';
     AppComponent,
     AdminLayoutComponent,
     AuthComponent,
-  
 
   ],
   exports: [

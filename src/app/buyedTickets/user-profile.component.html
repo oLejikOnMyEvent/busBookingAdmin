@@ -1,0 +1,85 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Купленные билеты</h4>
+
+                    </div>
+
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th> Номер Рейса </th>
+                                    <th>
+                                        Дата отправления
+                                    </th>
+                                    <th>
+                                        Дата прибытия
+                                    </th>
+                                    <th>
+                                        Дата бронирования
+                                    <th>
+                                        Цена
+                                    </th>
+                                    <th>
+                                        Место номер
+                                    </th>
+
+                                    <th>
+                                        Маршрут
+                                    </th>
+                                    <th>
+                                        Полное Имя
+                                    </th>
+                                    <th>
+                                        Логин
+                                    </th>
+
+                                </thead>
+                                <tbody *ngFor="let ticketInfo of buyedTickets">
+                                    <tr>
+                                        <td>
+                                            {{ticketInfo.tripNumber}}
+                                        </td>
+                                        <td>
+                                            {{ticketInfo.arrival}}
+                                        </td>
+                                        <td>
+                                            {{ticketInfo.departure}}
+                                        </td>
+                                        <td>
+                                            {{ticketInfo.bookingDate}}
+                                        </td>
+                                        <td class="text-primary">
+                                            {{ticketInfo.price}}
+
+
+                                        </td>
+                                        <td> {{ ticketInfo.seatNum }} </td>
+                                        <td> {{ticketInfo.tripTitle}} </td>
+                                        <td>{{ticketInfo.userFullname}} </td>
+                                        <td> {{ticketInfo.userName}} </td>
+
+
+
+
+
+
+
+
+
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
