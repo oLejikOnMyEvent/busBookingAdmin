@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormArray, FormBuilder, FormControlName } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -7,8 +7,8 @@ import { AddNewRouteService } from '../service/add-new-route.service'
 
 
 export interface Stations1488 {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
 
 
@@ -54,7 +54,28 @@ export class DashboardComponent implements OnInit {
   allStatins: any;
   routeName: string = ' '
   selectedObj: string[] = []
-  constructor(private AddNewRouteService: AddNewRouteService, private fb: FormBuilder) { }
+
+
+  public stationsSendObj: FormGroup;
+
+
+
+  // get stations() {
+  //   return this.stationsSendObj.get('stations') as FormArray;
+  // }
+
+
+  constructor(private AddNewRouteService: AddNewRouteService, private fb: FormBuilder) {
+    this.stationsSendObj = this.fb.group({
+      routeTitle: (''),
+      stations: this.fb.array([
+        this.fb.group({
+          id: [''],
+          title: ['']
+        })
+      ]),
+    })
+   }
 
   ngOnInit() {
     this.AddNewRouteService.getAllStations()
@@ -69,104 +90,105 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  stationsSelectors: FormGroup = new FormGroup({
-    stations: new FormArray([
-      new FormControl(this.allStatins),
+  // onSelectSelect(id: number, title:number,  formIndex : number): void{
 
-    ])
-  })
+  //   this.stationsSendObj.get('stations').controls[formIndex].patchValue({id:id, title:title});
+  // }
 
-
-
-
-  addStationFromGroup(): FormGroup{
-   return this.fb.group({
-     stations: new FormControl(''),
-     stationsWithObj: new FormControl(this.allStatins)
-   })
+  newSelectGroup(){
+    return new FormGroup({
+      id: new FormControl(),
+      title: new FormControl(' ')
+    })
   }
 
+  // stationsSelectors: FormGroup = new FormGroup({
+  //   stations: new FormArray([
+  //     new FormControl(this.allStatins),
+
+  //   ])
+  // })
+
+
+
+
+  // addStationFromGroup(): FormGroup{
+  //  return this.fb.group({
+  //    stationsWithObj: new FormControl(this.allStatins)
+  //  })
+  // }
 
 
 
 
 
-  stationSelectTest() {
-    let otherStat = [{
-      id: 1,
-      title: "Moscow"
-    },
-    {
-      id: 2,
-      title: "Rostov"
-    },
-    {
-      id: 3,
-      title: "Rostov"
-    },
-    ]
-  }
 
-  get stations(): FormArray { return this.stationsSelectors.get('stations') as FormArray; }
+  // stationSelectTest() {
+  //   let otherStat = [{
+  //     id: 1,
+  //     title: "Moscow"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Rostov"
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Rostov"
+  //   },
+  //   ]
+  // }
+
+
 
 
   addNewStationsTest() {
-    console.log('tipa new statiosn');
-    // (<FormArray>this..get('skills')).push(this.addSkillFormGroup());
+    console.log('tipa new statiosn', this.stationsSendObj.value);
+  
+
+    const fa = this.stationsSendObj.controls['stations'] as FormArray;
+
+
+    fa.push(this.newSelectGroup());
+   
   }
 
   DeleteItemFormArray(idx) {
-    this.stations.removeAt(idx);
+    const fa = this.stationsSendObj.controls['stations'] as FormArray;
+    fa.removeAt(idx)
   }
 
 
-  public addStationSelector() {
-
+  onChange(event){
+      const newVal = event.target.value
+      console.log(newVal)
   }
+  // public addStationSelector() {
 
-  
-  addNewStations() {
-
-
-    this.allSelectStations.push(this.allStatins)
+  // }
 
 
-
-  }
-
+  // addNewStations() {
 
 
-  CheckOptions(a, b) {
+  //   this.allSelectStations.push(this.allStatins)
 
-    console.log(a, b)
-  }
-  DeleteItem(index) {
+
+
+  // }
+
+
+
+  // CheckOptions(a, b) {
+
+  //   console.log(a, b)
+  // }
+  // DeleteItem(index) {
 
     // console.log(this.allSelectStations = this.allSelectStations.slice(index, 1));
 
 
-    return this.allSelectStations = this.allSelectStations.slice(0, index).concat(this.allSelectStations.slice(index + 1))
-
-
-
-  }
-
-
-  public onChange(event): void {
-    let newStr: string ;
-    const newVal: string = event.target.value;
-
-    newStr = newVal.slice(1)
-
-        let newObj = {
-      id: parseInt(newVal[0]),
-      title: newStr
-    }
-    // this.selectedObj.push(newObj)
-    console.log(newObj, typeof newObj);
-    console.log(this.selectedObj, typeof this.selectedObj);
-
-  }
+    //
 
   CreateNewRoute() {
     this.AddNewRouteService.postAllStations(this.routeName, this.selectedObj)
@@ -174,8 +196,8 @@ export class DashboardComponent implements OnInit {
         response => console.log(response),
         error => console.log(error)
       )
-   
-    
+
+
   }
 
   ShowData() {

@@ -3,25 +3,25 @@
 
     <div class="card">
       <div class="card-body">
+        <form [formGroup]="stationsSendObj" >
+          <input type="text"  formControlName="routeTitle"> Введите название маршрута
 
-          <input type="text"  [(ngModel)]="routeName"> Введите название маршрута
-
-        <div class="selectStations" *ngFor="let stations of allSelectStations, index as i">
+        <!-- <div class="selectStations" *ngFor="let stations of allSelectStations, index as i">
           <select class="custom-select col-lg-2" id="inputGroupSelect01" style="margin-top:10px;"
             (change)="onChange($event)">
             <option selected *ngFor="let items of stations" [value]="items.id + items.title" [ngValue]=items
               value={{items.id}}> {{items.title}} </option>
-          </select>
+          </select> -->
 
           <!-- <button (click)="CheckOptions(stations)"> Check optons </button> -->
-          <button type="button" (click)="DeleteItem(i)" class="btn btn-default" style="margin-top: 15px;"> X </button>
+          <!-- <button type="button" (click)="DeleteItem(i)" class="btn btn-default" style="margin-top: 15px;"> X </button> -->
           <!-- <i class="material-icons" >clear</i> -->
-        </div>
+        <!-- </div> -->
 
 
-        <div class="buttonAdd" style="margin-top: 20px;">
+        <!-- <div class="buttonAdd" style="margin-top: 20px;">
           <button type="button" class="btn btn-info" (click)="addNewStations()"> Добавить Станцию </button>
-        </div>
+        </div> -->
 
         <!-- <button class="CreateNew"  > Создать </button> -->
 
@@ -52,22 +52,35 @@
 
 
         <hr>
-        <form>
+       
+            <div formArrayName="stations" > 
+          <div class="formSelectors" *ngFor="let stations of stationsSendObj.controls['stations'].controls; let idx=index" [formGroup]="stations" > 
+          
 
-          <div class="formSelectors">
-            <div >
-            <select class="custom-select col-lg-3" id="inputGroupSelect012" style="margin-top:10px;" >
-              <option selected disabled>Выберите станцию</option>
-              <option >   </option>
+
+
+            <select class="custom-select col-lg-3" id="inputGroupSelect012" style="margin-top:10px;"
+            
+            
+            (change)="onChange($event)"
+           
+            >
+            <!-- (change)="onSelectSelect()"
+            formControlName="id, value"
+            controls['stations'].controls.['id'].value, stationsSendObj.controls['stations'].controls.['title'].value, idx) -->
+          
+              <option value="0"  selected >Select a Station</option>
+              <option  *ngFor="let item of allStatins" >  {{item.id}} {{item.title}}  </option>
+         
             </select>
 
-            <button type="button" class="btn btn-default" style="margin-top: 15px;"> X </button>
-          </div>
+            <button type="button" class="btn btn-default" style="margin-top: 15px;"  (click)="DeleteItemFormArray(idx)"> X </button>
+     
           </div>
 
-        
+        </div>
 
-              <pre> tut buid json</pre>
+              <pre> {{stationsSendObj.value | json}}</pre>
         </form>
 
         <div class="buttonAdd" style="margin-top: 20px;">
