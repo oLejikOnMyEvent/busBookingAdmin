@@ -3,7 +3,7 @@ import * as Chartist from 'chartist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { AddSegmentsService } from '../service/add-segments.service'
-import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
 
 
 
@@ -16,7 +16,18 @@ export class SegmentComponent implements OnInit {
 
   time = { hour: 7, minute: 0, second: 0 };
   model;
-  constructor(private AddSegmentsService: AddSegmentsService) { }
+
+  StationsFormArray: FormGroup
+  constructor(private AddSegmentsService: AddSegmentsService, private fb: FormBuilder) {
+
+    this.StationsFormArray = this.fb.group({
+          tripnumber: (''),
+          busId: (''),
+          
+    })
+   }
+
+
 
 
   route: any;
@@ -43,7 +54,7 @@ export class SegmentComponent implements OnInit {
   MMtimeDeparture = "";
   dataDeparture = '';
   timeDeparture = "timeDeparture";
-  timeDepatruteValue =`${this.dataDeparture} ${this.HHtimeDeparture}:${this.MMtimeDeparture}`
+  timeDepatruteValue = `${this.dataDeparture} ${this.HHtimeDeparture}:${this.MMtimeDeparture}`
 
 
 
@@ -52,7 +63,7 @@ export class SegmentComponent implements OnInit {
   MMtimeArrival: "";
   dataArrival: '';
   timeArrival = "timeArrival";
-  timeArrivalValue =`${this.dataArrival} ${this.HHtimeArrival}:${this.MMtimeArrival}`
+  timeArrivalValue = `${this.dataArrival} ${this.HHtimeArrival}:${this.MMtimeArrival}`
 
 
   // DynamicForm: FormGroup;
@@ -77,10 +88,10 @@ export class SegmentComponent implements OnInit {
   })
 
   FormValue = new FormArray([
-    
+
   ])
 
- 
+
   ngOnInit() {
     this.AddSegmentsService.getRouteNumber()
       .subscribe(
