@@ -19,11 +19,8 @@ export class AddNewRouteService {
     return this.http.get<{ id: number; title: string; }[]>(this.stationUrl);
   }
 
-  postAllStations(routeTitle, data){
-    let dataObj ={
-      routeTitle: routeTitle,
-      stations: data
-    }
+  postAllStations(dataObj){
+   
 
     return this.http.post(this.addStationsUrl, dataObj)
   }

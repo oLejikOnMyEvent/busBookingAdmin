@@ -60,19 +60,12 @@ export class DashboardComponent implements OnInit {
 
 
 
-  // get stations() {
-  //   return this.stationsSendObj.get('stations') as FormArray;
-  // }
-
 
   constructor(private AddNewRouteService: AddNewRouteService, private fb: FormBuilder) {
     this.stationsSendObj = this.fb.group({
       routeTitle: (''),
       stations: this.fb.array([
-        this.fb.group({
-          id: [''],
-          title: ['']
-        })
+        this.fb.control('')
       ]),
     })
    }
@@ -90,54 +83,7 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  // onSelectSelect(id: number, title:number,  formIndex : number): void{
-
-  //   this.stationsSendObj.get('stations').controls[formIndex].patchValue({id:id, title:title});
-  // }
-
-  newSelectGroup(){
-    return new FormGroup({
-      id: new FormControl(),
-      title: new FormControl(' ')
-    })
-  }
-
-  // stationsSelectors: FormGroup = new FormGroup({
-  //   stations: new FormArray([
-  //     new FormControl(this.allStatins),
-
-  //   ])
-  // })
-
-
-
-
-  // addStationFromGroup(): FormGroup{
-  //  return this.fb.group({
-  //    stationsWithObj: new FormControl(this.allStatins)
-  //  })
-  // }
-
-
-
-
-
-
-  // stationSelectTest() {
-  //   let otherStat = [{
-  //     id: 1,
-  //     title: "Moscow"
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Rostov"
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Rostov"
-  //   },
-  //   ]
-  // }
+ 
 
 
 
@@ -153,45 +99,22 @@ export class DashboardComponent implements OnInit {
    
   }
 
+
+  newSelectGroup(){
+    return new FormControl(' ')
+    
+  }
+
   DeleteItemFormArray(idx) {
     const fa = this.stationsSendObj.controls['stations'] as FormArray;
     fa.removeAt(idx)
   }
 
 
-  onChange(event){
-      const newVal = event.target.value
-      console.log(newVal)
-  }
-  // public addStationSelector() {
-
-  // }
-
-
-  // addNewStations() {
-
-
-  //   this.allSelectStations.push(this.allStatins)
-
-
-
-  // }
-
-
-
-  // CheckOptions(a, b) {
-
-  //   console.log(a, b)
-  // }
-  // DeleteItem(index) {
-
-    // console.log(this.allSelectStations = this.allSelectStations.slice(index, 1));
-
-
-    //
-
+  
   CreateNewRoute() {
-    this.AddNewRouteService.postAllStations(this.routeName, this.selectedObj)
+   // console.log();
+    this.AddNewRouteService.postAllStations(this.stationsSendObj.value)
       .subscribe(
         response => console.log(response),
         error => console.log(error)
@@ -205,19 +128,3 @@ export class DashboardComponent implements OnInit {
   }
 }
 
-// 0:
-// id: 14
-// routeDto:
-// id: 1
-// title: "Мск-Тмбв-Мхч"
-// vector: "==1==9==10==8==11=="
-// __proto__: Object
-// segmentDto: {id: 3, title: "Москва-Тамбов", stationStart: {…}, stationFinish: {…}, price: 1200}
-// __proto__: Object
-
-// segmentDto:
-// id: 3
-// price: 1200
-// stationFinish: {id: 9, title: "Тамбов"}
-// stationStart: {id: 1, title: "Москва"}
-// title: "Москва-Тамбов"
