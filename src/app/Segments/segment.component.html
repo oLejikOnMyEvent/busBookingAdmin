@@ -25,56 +25,68 @@
           </div> -->
         
 
-      <form class="form-inline" [formGroup]="DynamicForm">
+      <form class="form-inline" >
          
-          <div class="choiseBus" style="margin-top: 20px;">
-          <input  class="form-control col-lg-6" placeholder="Номер рейса" [formControlName]="tripNumber">
-
-        
-        
-          
-              <select class="custom-select col-lg-6" id="inputGroupSelect01"  style="margin-left:60px;" (change)="busSelect($event)" [formControlName]="busIdName" >
-            
-            <option selected disabled >  Выберите Автобус </option>
-            <option *ngFor="let bus of busSelector" [value]=bus.id>{{bus.title}}   вместимость {{bus.seatsCount}}  </option>
-            
-              </select>
-            </div>
-
-          <div class="form-group"  *ngFor="let segments of segmentSelect; let i=index ">
+      
+          <div class="form-group"  *ngFor="let segments of segmentSelect; let i=index">
             
              
             <div class="input-group">
-
-              <p >{{segments.segmentDto.title}} </p>
+              <p class="col-lg-1">  {{segments.segmentDto.id}}</p>
+              <p class="col-lg-2" >{{segments.segmentDto.title}} </p>
                 
-              <input  placeholder="дата отправления" style="margin-left: 50px;"
-                     name="dp" [value]="dataDeparture" >
             
-                     <input class="form-control col-lg-1" style="margin-left: 20px;" placeholder="HH"  [value]=HHtimeDeparture>
-                     <input  class="form-control col-lg-1" style="margin-left: 20px;" placeholder="MM"  [value]=MMtimeDeparture>
+              <input class="col-lg-2" placeholder="дата отправления" style="margin-left: 50px;"
+                     name="dp"  >
+            
+                     <input class="form-control col-lg-2" style="margin-left: 20px;" placeholder="Время отправления">
+           
 
-                     <input  placeholder="дата прибытия" style="margin-left: 50px;"
-                     name="dp" [value]=dataArrival>
+                     <input   class="col-lg-2" placeholder="дата прибытия" style="margin-left: 50px;"
+                     name="dp" >
 
-                     <input class="form-control col-lg-1" style="margin-left: 20px;" placeholder="HH" [value]=HHtimeArrival >
-                     <input  class="form-control col-lg-1" style="margin-left: 20px;" placeholder="MM" [value]=MMtimeArrival>
+                     <input class="form-control col-lg-2" style="margin-left: 20px;" placeholder="Время прибытия" >
+                    
 
-              <input type="text" class="form-control col-lg-1" style="margin-left: 20px;" [value]=segments.segmentDto.price [formControlName]="segmentPriceName" > Цена
-              {{segments.segmentDto.id}}
+              <input type="text" class="form-control col-lg-2" style="margin-left: 20px;" placeholder="Цена">
+         
            
             </div>
+
+         
           </div>
+
+          <div class="choiseBus" style="margin-top: 20px;" *ngIf="segmentSelect">
+            <input  class="form-control col-lg-6" placeholder="Номер рейса" >
+  
+          
+          
+            
+                <select class="custom-select col-lg-6" id="inputGroupSelect01"  style="margin-left:60px;" (change)="busSelect($event)" >
+              
+              <option selected disabled >  Выберите Автобус </option>
+              <option *ngFor="let bus of busSelector" [value]=bus.id>{{bus.title}}   вместимость {{bus.seatsCount}}  </option>
+              
+                </select>
+              </div>
+  
+        
 
 
     
         </form>
-        <!-- <pre>{{DynamicForm.value |json}} </pre> -->
+        <pre>{{StationsFormArray.value |json}} </pre>
        
    
       <hr>
       
-  
+        <div> 
+      <form [formGroup]="form" (ngSubmit)="submit(model)" class="col-lg-2">
+        <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+     
+      </form>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
 
         <div class="buttonsAddCansel" style="margin-top:20px;">
             <button type="button" class="btn btn-primary" (click)="createNewTrips()">Добавить</button>

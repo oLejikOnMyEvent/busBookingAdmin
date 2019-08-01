@@ -4,8 +4,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { AddSegmentsService } from '../service/add-segments.service'
 import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 
-
+export interface inputs {
+  value?: string;
+  validator: string;
+}
 
 @Component({
   selector: 'app-segment',
@@ -15,18 +19,41 @@ import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@ang
 export class SegmentComponent implements OnInit {
 
   time = { hour: 7, minute: 0, second: 0 };
-  model;
+  // model;
 
-  StationsFormArray: FormGroup
+  StationsFormArray: FormArray
+
+
   constructor(private AddSegmentsService: AddSegmentsService, private fb: FormBuilder) {
 
-    this.StationsFormArray = this.fb.group({
-          tripnumber: (''),
-          busId: (''),
-          
-    })
-   }
+    this.StationsFormArray = this.fb.array([
+      this.fb.group({
+        tripNumber: [''],
+        routeSegmentId: [''],
+        timeDeparture: [''],
+        timeArrival: [''],
+        segmentPrice: [''],
+        busId: ['']
+      })
+    ])
+  }
 
+
+
+  // inputsArray: {
+  //   tripNumber: '',
+  //   routeSegmentId: '',
+  //   timeDeparture: '',
+  //   timeArrival: '',
+  //   segmentPrice: '',
+  //   busId: ''
+  // }
+
+  submit(model) {
+    console.log(model);
+  }
+
+  fromSelectsArray: FormGroup;
 
 
 
@@ -50,46 +77,66 @@ export class SegmentComponent implements OnInit {
 
 
 
-  HHtimeDeparture = "";
-  MMtimeDeparture = "";
-  dataDeparture = '';
-  timeDeparture = "timeDeparture";
-  timeDepatruteValue = `${this.dataDeparture} ${this.HHtimeDeparture}:${this.MMtimeDeparture}`
+  // HHtimeDeparture = "";
+  // MMtimeDeparture = "";
+  // dataDeparture = '';
+  // timeDeparture = "timeDeparture";
+  // timeDepatruteValue = `${this.dataDeparture} ${this.HHtimeDeparture}:${this.MMtimeDeparture}`
 
 
 
 
-  HHtimeArrival: "";
-  MMtimeArrival: "";
-  dataArrival: '';
-  timeArrival = "timeArrival";
-  timeArrivalValue = `${this.dataArrival} ${this.HHtimeArrival}:${this.MMtimeArrival}`
+  // HHtimeArrival: "";
+  // MMtimeArrival: "";
+  // dataArrival: '';
+  // timeArrival = "timeArrival";
+  // timeArrivalValue = `${this.dataArrival} ${this.HHtimeArrival}:${this.MMtimeArrival}`
 
 
   // DynamicForm: FormGroup;
-  segmentPriceName = "segmentPrice";
-  segmentPriceValue = ''
-  tripNumber = "tripNumber"
-  tripNumberValue = ""
-  routeSegmentId = "routeSegmentId"
+  // segmentPriceName = "segmentPrice";
+  // segmentPriceValue = ''
+  // tripNumber = "tripNumber"
+  // tripNumberValue = ""
+  // routeSegmentId = "routeSegmentId"
 
   busIdName = "busId"
   busIdValue: number;
   test = 'privet';
 
 
-  DynamicForm = new FormGroup({
-    [this.tripNumber]: new FormControl(this.tripNumberValue),
-    [this.routeSegmentId]: new FormControl(null),
-    [this.timeDeparture]: new FormControl(this.timeDepatruteValue),
-    [this.segmentPriceName]: new FormControl(this.segmentSelect),
-    [this.timeArrival]: new FormControl(this.timeArrivalValue),
-    [this.busIdName]: new FormControl(this.busIdValue)
-  })
 
   FormValue = new FormArray([
 
   ])
+
+
+  form = new FormGroup({});
+  model = {
+    tripNumber: '',
+    routeSegmentId: '',
+    timeDeparture: '',
+    timeArrival: '',
+    segmentPrice: '',
+    busId: this.busId
+  }
+  fields: FormlyFieldConfig[] = [{
+    key: 'email',
+    type: 'input',   
+    templateOptions: {
+      label: 'Email address',
+      placeholder: 'Enter email',
+    }
+  },
+    {
+      key: 'timeDeparture',
+      type: 'input',
+      templateOptions: {
+        label: 'Enter time departure'
+      }
+
+    }
+];
 
 
   ngOnInit() {
@@ -112,6 +159,7 @@ export class SegmentComponent implements OnInit {
         error => console.log(error)
       )
   }
+
   public onChange(event): void {
 
     const newVal: string = event.target.value;
@@ -135,11 +183,12 @@ export class SegmentComponent implements OnInit {
   busSelect(event): void {
     const newVal: string = event.target.value;
     this.busId = newVal;
+    console.log(this.busId);
 
   }
 
   createNewTrips() {
-    console.log(this.DynamicForm.value);
+
 
 
     // this.AddSegmentsService.createNewTrip()

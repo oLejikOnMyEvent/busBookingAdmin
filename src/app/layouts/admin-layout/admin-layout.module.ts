@@ -15,7 +15,8 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { SegmentComponent } from '../../Segments/segment.component';
 import { UserListComponent } from '../../userList/user-list.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import {FormlyModule} from '@ngx-formly/core';
+import {FormlyBootstrapModule} from '@ngx-formly/bootstrap';
 
 
 import {
@@ -40,7 +41,9 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    FormlyBootstrapModule
   ],
   declarations: [
     DashboardComponent,

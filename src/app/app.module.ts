@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
 
-
+import {FormlyModule} from '@ngx-formly/core';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -48,6 +48,7 @@ import { AuthComponent } from './auth/auth.component';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    FormlyModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
