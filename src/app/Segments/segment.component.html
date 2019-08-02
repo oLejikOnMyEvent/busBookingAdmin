@@ -32,23 +32,26 @@
             
              
             <div class="input-group">
-              <p class="col-lg-1">  {{segments.segmentDto.id}}</p>
+              <input class="form-control col-lg-1" style="margin-left: 25px;" placeholder="Время отправления"  disabled> 
               <p class="col-lg-2" >{{segments.segmentDto.title}} </p>
+             
                 
             
-              <input class="col-lg-2" placeholder="дата отправления" style="margin-left: 50px;"
+              <input class="col-lg-2" placeholder="дата отправления"
                      name="dp"  >
             
-                     <input class="form-control col-lg-2" style="margin-left: 20px;" placeholder="Время отправления">
+                     <input class="form-control col-lg-2" style="margin-left: 25px;" placeholder="Время отправления">
            
 
-                     <input   class="col-lg-2" placeholder="дата прибытия" style="margin-left: 50px;"
+                     <input   class="col-lg-2" placeholder="дата прибытия" style="margin-left: 20px;"
                      name="dp" >
 
                      <input class="form-control col-lg-2" style="margin-left: 20px;" placeholder="Время прибытия" >
                     
 
               <input type="text" class="form-control col-lg-2" style="margin-left: 20px;" placeholder="Цена">
+
+              <!-- <input class="form-control col-lg-1" style="margin-left: 25px;" placeholder="Номер Рейса"  disabled>  -->
          
            
             </div>
@@ -56,7 +59,8 @@
          
           </div>
 
-          <div class="choiseBus" style="margin-top: 20px;" *ngIf="segmentSelect">
+          
+          <div class="choiseBus" style="margin-top: 30px;" *ngIf="segmentSelect">
             <input  class="form-control col-lg-6" placeholder="Номер рейса" >
   
           
@@ -75,17 +79,21 @@
 
     
         </form>
-        <pre>{{StationsFormArray.value |json}} </pre>
+
        
    
       <hr>
       
         <div> 
-      <form [formGroup]="form" (ngSubmit)="submit(model)" class="col-lg-2">
+      <form [formGroup]="form" (ngSubmit)="submit(model)">
         <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
      
       </form>
     </div>
+
+
+            <pre>{{model.value | json}} </pre>
+                  <pre>{{form.value |json }} </pre>
     <button type="submit" class="btn btn-default">Submit</button>
 
         <div class="buttonsAddCansel" style="margin-top:20px;">

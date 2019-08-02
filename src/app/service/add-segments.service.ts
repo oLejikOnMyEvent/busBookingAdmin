@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,11 @@ export class AddSegmentsService {
 
   routeNumber = 'http://192.168.2.11:8080/admin/route';
 
-      
+
 
 
   busAddress = 'http://192.168.2.11:8080/admin/bus';
+
   getRouteNumber() {
     return this.http.get<{ id: number; title: string; }[]>(this.routeNumber);
   }
@@ -34,12 +36,22 @@ export class AddSegmentsService {
   //   }
 
   createNewTrip(data) {
-  return this.http.post('http://192.168.2.11:8080/admin/trip/add', data)
+    return this.http.post('http://192.168.2.11:8080/admin/trip/add', data)
   }
 
 
-  getBusList(){
-    return this.http.get(this.busAddress);
+  objOfBus = [
+    { id: 1, title: "Hyundai", seatsCount: 60 },
+    { id: 2, title: "Mercedes", seatsCount: 80 }
+  ]
+
+  // getBusList() {
+  //   return this.http.get<{ id: number; title: string; }[]>(this.busAddress);
+  // }
+
+  getBusList() {
+    return of (this.objOfBus)
+      
   }
 }
 
