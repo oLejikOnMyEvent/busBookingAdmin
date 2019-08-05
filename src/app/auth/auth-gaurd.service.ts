@@ -14,8 +14,16 @@ export class AuthGaurdService {
     if (this.authService.isUserLoggedIn())
       return true;
 
-    this.router.navigate(['login']);
+    this.router.navigate(['loginAdmin']);
     return false;
 
+  }
+
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+    if (this.authService.isUserLoggedIn())
+      return true;
+
+    this.router.navigate(['loginAdmin']);
+    return false;
   }
 }

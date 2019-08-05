@@ -10,7 +10,7 @@ export class AllBookingRoutesService {
   constructor(private http: HttpClient) { }
 
   buyedTickets(){
-    return this.http.get('http://192.168.2.11:8080/admin/bookings')
+    return this.http.get('http://localhost:4200/admin/bookings')
   }
 
   // buyedTicketsObj = [

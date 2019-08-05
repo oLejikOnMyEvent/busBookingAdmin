@@ -23,7 +23,7 @@ export class AllUsersService {
 
 
   getAllUsers(){
-    return this.http.get('http://192.168.2.11:8080/admin/users');
+    return this.http.get('http://localhost:4200/admin/users');
   }
 
 

@@ -14,8 +14,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/user-profile', title: 'Купленные билеты', icon: 'person', class: '' },
   { path: '/userlist', title: 'Список пользователей', icon: 'account_circle', class: '' },
   { path: '/table-list', title: 'Текущие рейсы', icon: 'content_paste', class: '' },
-  { path: '/login', title: 'Выход', icon: 'exit_to_app', class: 'exit_button' },
-
+  { path: '/logout', title: 'Выход', icon: 'exit_to_app', class: 'exit_button' }
 
 
 ];
@@ -28,7 +27,7 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor(private loginService:AuthServService) { }
+  constructor(public loginService: AuthServService) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);

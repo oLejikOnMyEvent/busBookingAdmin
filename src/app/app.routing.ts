@@ -1,4 +1,5 @@
 import { LoginComponent } from './auth/login/login.component';
+import {LogoutComponent} from './auth/logout/logout.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,19 +13,21 @@ const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-    canActivate: [AuthGaurdService]
+    canActivateChild: [AuthGaurdService],
   }, {
     path: '',
+    canActivateChild: [AuthGaurdService],
     component: AdminLayoutComponent,
     children: [{
       path: '',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
     }, ],
-    canActivateChild: [AuthGaurdService],
+  
    
   },
   // {path: 'auth', component: AuthComponent},
-  { path: 'loginAdmin', component: LoginComponent }
+  { path: 'loginAdmin', component: LoginComponent },
+  {path: 'logout', component: LogoutComponent}
 ];
 
 @NgModule({
@@ -36,6 +39,7 @@ const routes: Routes = [
     })
   ],
   exports: [
+    RouterModule
   ],
 })
 export class AppRoutingModule { }

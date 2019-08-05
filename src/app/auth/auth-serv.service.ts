@@ -22,13 +22,14 @@ export class AuthServService {
 
   authenticate(username, password) {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    return this.http.get<User>('http://localhost:4200/stations', { headers }).pipe(
+    return this.http.get<User>('http://localhost:4200/admin/stations', { headers }).pipe(
       map(
         userData => {
           sessionStorage.setItem('username', username);
           let authString = 'Basic ' + btoa(username + ':' + password);
           sessionStorage.setItem('basicauth', authString);
           return userData;
+        
         }
       )
 

@@ -7,9 +7,9 @@ import { Injectable } from '@angular/core';
 export class AddNewRouteService {
 
 
-  stationUrl = 'http://192.168.2.11:8080/stations';
+  stationUrl = 'http://localhost:4200/stations';
   
-  addStationsUrl = 'http://192.168.2.11:8080/admin/route'
+  addStationsUrl = 'http://localhost:4200/admin/route'
   constructor(private http: HttpClient) {
    }
 
