@@ -156,7 +156,7 @@ export class SegmentComponent implements OnInit {
         key: 'timeDeparture',
         type: 'input',
         templateOptions: {
-          label: 'Время отправления'
+          label: 'Дата и Время отправления "2019-08-01 18:10"'
         }
       },
       {
@@ -164,7 +164,7 @@ export class SegmentComponent implements OnInit {
         key: 'timeArrival',
         type: 'input',
         templateOptions: {
-          label: 'Время прибытия'
+          label: 'Дата и Время прибытия в формате "2019-08-02 02:00"'
         }
       },
       {
@@ -172,7 +172,7 @@ export class SegmentComponent implements OnInit {
         key: 'segmentPrice',
         type: 'input',
         templateOptions: {
-          label: 'Цена сегмента'
+          label: 'Цена сегмента '
         }
       },
       {

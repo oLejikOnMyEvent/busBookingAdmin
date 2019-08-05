@@ -1,3 +1,4 @@
+// import { LoginComponent } from '../../auth/login/login.component';
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../dashboard/dashboard.component';
@@ -64,5 +65,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'notifications', component: NotificationsComponent },
     { path: 'segments', component: SegmentComponent },
     { path: 'userlist', component: UserListComponent }
+  
 
 ];
