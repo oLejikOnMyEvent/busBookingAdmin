@@ -122,23 +122,17 @@ export class SegmentComponent implements OnInit {
 
   form = new FormGroup({});
   model: any = {
-    tripnumber: 1,
-    routeSegmentId: 286,
-    timeDeparture: "2019-08-01 10:00",
-    timeArrival: "2019-08-01 18:00",
-    segmentPrice: 1000,
-    busId: 1
-
   }
-
+  options: FormlyFormOptions = {};
 
   // tslint:disable-next-line: member-ordering
   fields: FormlyFieldConfig[] =
     [
       {
-        className: 'col-lg-2',
+        
         key: 'tripnumber',
         type: 'input',
+        className: 'col-lg-2',
         templateOptions: {
           label: 'Номер Рейса'
         }
@@ -184,6 +178,9 @@ export class SegmentComponent implements OnInit {
         }
       }
     ]
+
+
+
 
 
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable , of} from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -49,9 +49,54 @@ export class AddSegmentsService {
   //   return this.http.get<{ id: number; title: string; }[]>(this.busAddress);
   // }
 
+
+  objectWithData = [
+    {
+      id: 2, routeDto: {
+        id: 2,
+        title: "Мск-Елец-Врнж-Мхч",
+        vector: "=1==3==2==6==5==4==11=="
+      },
+      segmentDto: {
+        id: 2,
+        price: 1000,
+        stationFinish: {
+          id: 3,
+          title: "Елец"
+        },
+        stationStart: {
+          id: 1,
+          title: "Москва"
+        },
+        title: "Москва-Елец"
+      }
+    },
+
+    {
+      id: 3, routeDto: {
+        id: 3,
+        title: "Мск-Елец-Врнж-Мхч",
+        vector: "=1==3==2==6==5==4==11=="
+      },
+      segmentDto: {
+        id: 3,
+        price: 1488,
+        stationFinish: {
+          id: 4,
+          title: "Не Елец"
+        },
+        stationStart: {
+          id: 1,
+          title: "Не Москва"
+        },
+        title: "Не Москва- Не Елец"
+      }
+    },
+  ]
+
   getBusList(): Observable<any[]> {
-    return of (this.objOfBus)
-      
+    return of(this.objOfBus)
+
   }
 }
 

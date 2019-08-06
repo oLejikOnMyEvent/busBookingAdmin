@@ -47,9 +47,9 @@ import { BasicAuthHtppInterceptorService } from './auth/basic-auth-http-intercep
     RouterModule,
     AppRoutingModule,
     FormlyModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    }),
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+    // }),
 
   ],
   declarations: [

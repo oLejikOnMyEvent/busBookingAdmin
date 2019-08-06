@@ -32,7 +32,8 @@
             
              
             <div class="input-group">
-              <input class="form-control col-lg-1" style="margin-left: 25px;" placeholder="Время отправления"  disabled> 
+              <!-- <input class="form-control col-lg-1" style="margin-left: 25px;"  disabled>  -->
+              <p class="col-lg-1"> {{segments.segmentDto.id}} </p>
               <p class="col-lg-2" >{{segments.segmentDto.title}} </p>
              
                 
@@ -84,7 +85,7 @@
    
       <hr>
       
-        <div> 
+        <div class="ngxFormlyExample"> 
       <form [formGroup]="form" (ngSubmit)="submit(model)">
         <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
      

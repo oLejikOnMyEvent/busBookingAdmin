@@ -9,7 +9,7 @@ import { UserProfileComponent } from '../../buyedTickets/user-profile.component'
 import { TableListComponent } from '../../trips/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
 import { IconsComponent } from '../../icons/icons.component';
-import { MapsComponent } from '../../maps/maps.component';
+// import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { SegmentComponent } from '../../Segments/segment.component';
@@ -17,7 +17,7 @@ import { UserListComponent } from '../../userList/user-list.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormlyModule} from '@ngx-formly/core';
 import {FormlyBootstrapModule} from '@ngx-formly/bootstrap';
-
+import { RepeatTypeComponent } from '../../Segments/repeat-section.type'
 
 import {
   MatButtonModule,
@@ -42,8 +42,13 @@ import {
     MatSelectModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    FormlyModule.forRoot(),
-    FormlyBootstrapModule
+    FormlyBootstrapModule,
+    FormlyModule.forRoot({
+      types: [
+        { name: 'repeat', component: RepeatTypeComponent },
+      ],
+    }),
+ 
   ],
   declarations: [
     DashboardComponent,
@@ -51,11 +56,12 @@ import {
     TableListComponent,
     TypographyComponent,
     IconsComponent,
-    MapsComponent,
+    // MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
     SegmentComponent,
-    UserListComponent
+    UserListComponent,
+    RepeatTypeComponent
   ]
 })
 
