@@ -22,35 +22,42 @@ export class SegmentComponent implements OnInit {
   time = { hour: 7, minute: 0, second: 0 };
   // model;
 
-  StationsFormArray: FormArray
+  StationsFormArray: FormGroup
 
 
   constructor(private AddSegmentsService: AddSegmentsService, private fb: FormBuilder) {
 
-    // this.StationsFormArray = this.fb.array([
-    //   this.fb.group({
-    //     tripNumber: [''],
-    //     routeSegmentId: [''],
-    //     timeDeparture: [''],
-    //     timeArrival: [''],
-    //     segmentPrice: [''],
-    //     busId: ['']
-    //   })
-    // ])
+    this.StationsFormArray = this.fb.group({
+    segment: fb.array([
+      this.fb.group({
+        tripNumber: [''],
+        routeSegmentId: [''],
+        timeDeparture: [''],
+        timeArrival: [''],
+        segmentPrice: [''],
+        busId: ['']
+      })
+    ])
+  })
 
 
   }
 
 
 
-  // inputsArray: {
-  //   tripNumber: '',
-  //   routeSegmentId: '',
-  //   timeDeparture: '',
-  //   timeArrival: '',
-  //   segmentPrice: '',
-  //   busId: ''
-  // }
+  imputsObj: {
+    tripNumber: '',
+    routeSegmentId: '',
+    timeDeparture: '',
+    timeArrival: '',
+    segmentPrice: '',
+    busId: ''
+  }
+
+  inputsArray = {
+
+  }
+
 
   submit(model) {
     console.log(model);
@@ -156,7 +163,7 @@ export class SegmentComponent implements OnInit {
       {
         className: 'col-lg-2',
         key: 'timeArrival',
-        type: 'input',
+      type: 'input',
         templateOptions: {
           label: 'Дата и Время прибытия в формате "2019-08-02 02:00"'
         }

@@ -14,7 +14,7 @@
           
        
         </div>
-
+       
 
        
          
@@ -25,10 +25,23 @@
           </div> -->
         
 
-      <form class="form-inline" >
-         
+      <form class="form-inline" [formGroup]="StationsFormArray" >
+         <div formArrayName="segment">
+
+        
+        <div class="choiseBus" style="margin-top: 10px;" >
+          <input  class="form-control col-lg-6" placeholder="Номер рейса" >
+          
+              <select class="custom-select col-lg-6" id="inputGroupSelect01" (change)="busSelect($event)" >
+            
+            <option selected disabled >  Выберите Автобус </option>
+            <option *ngFor="let bus of busSelector" [value]=bus.id>{{bus.title}}   вместимость {{bus.seatsCount}}  </option>
+            
+              </select>
+            </div>
+
       
-          <div class="form-group"  *ngFor="let segments of segmentSelect; let i=index">
+          <div class="form-group"  *ngFor="let segments of segmentSelect; let i=index" >
             
              
             <div class="input-group">
@@ -38,16 +51,13 @@
              
                 
             
-              <input class="col-lg-2" placeholder="дата отправления"
-                     name="dp"  >
-            
-                     <input class="form-control col-lg-2" style="margin-left: 25px;" placeholder="Время отправления">
+              
+                     <input class="form-control col-lg-3" style="margin-left: 25px;" placeholder="Дата и Время отправления">
            
 
-                     <input   class="col-lg-2" placeholder="дата прибытия" style="margin-left: 20px;"
-                     name="dp" >
+            
 
-                     <input class="form-control col-lg-2" style="margin-left: 20px;" placeholder="Время прибытия" >
+                     <input class="form-control col-lg-3" style="margin-left: 20px;" placeholder="Дата и Время прибытия" >
                     
 
               <input type="text" class="form-control col-lg-2" style="margin-left: 20px;" placeholder="Цена">
@@ -56,31 +66,21 @@
          
            
             </div>
-
+          </div>
          
           </div>
-
+        
           
-          <div class="choiseBus" style="margin-top: 30px;" *ngIf="segmentSelect">
-            <input  class="form-control col-lg-6" placeholder="Номер рейса" >
-  
-          
-          
-            
-                <select class="custom-select col-lg-6" id="inputGroupSelect01"  style="margin-left:60px;" (change)="busSelect($event)" >
-              
-              <option selected disabled >  Выберите Автобус </option>
-              <option *ngFor="let bus of busSelector" [value]=bus.id>{{bus.title}}   вместимость {{bus.seatsCount}}  </option>
-              
-                </select>
-              </div>
+       
   
         
 
 
     
         </form>
+        
 
+        <pre>{{StationsFormArray.value | json}} </pre>
        
    
       <hr>
