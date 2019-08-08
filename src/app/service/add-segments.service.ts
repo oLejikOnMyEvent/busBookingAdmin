@@ -45,9 +45,9 @@ export class AddSegmentsService {
     { id: 2, title: "Mercedes", seatsCount: 80 }
   ]
 
-  // getBusList() {
-  //   return this.http.get<{ id: number; title: string; }[]>(this.busAddress);
-  // }
+  getBusList(): Observable<any[]> {
+    return this.http.get<{ id: number; title: string; }[]>(this.busAddress);
+  }
 
 
   objectWithData = [
@@ -94,10 +94,10 @@ export class AddSegmentsService {
     },
   ]
 
-  getBusList(): Observable<any[]> {
-    return of(this.objOfBus)
+  // getBusList(): Observable<any[]> {
+  //   return of(this.objOfBus)
 
-  }
+  // }
 }
 
 //http://192.168.2.11:8080/admin/bookings -- все бронирования(купленные билеты)

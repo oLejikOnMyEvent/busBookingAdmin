@@ -12,7 +12,7 @@
 
           </select>
           
-       
+       <button (click)="ShowTable()"> Show Table </button>
         </div>
        
 
@@ -25,7 +25,7 @@
           </div> -->
         
 
-      <form class="form-inline" [formGroup]="StationsFormArray" >
+      <!-- <form class="form-inline" [formGroup]="StationsFormArray" >
          <div formArrayName="segment">
 
         
@@ -45,7 +45,7 @@
             
              
             <div class="input-group">
-              <!-- <input class="form-control col-lg-1" style="margin-left: 25px;"  disabled>  -->
+   >
               <p class="col-lg-1"> {{segments.segmentDto.id}} </p>
               <p class="col-lg-2" >{{segments.segmentDto.title}} </p>
              
@@ -62,7 +62,7 @@
 
               <input type="text" class="form-control col-lg-2" style="margin-left: 20px;" placeholder="Цена">
 
-              <!-- <input class="form-control col-lg-1" style="margin-left: 25px;" placeholder="Номер Рейса"  disabled>  -->
+    
          
            
             </div>
@@ -77,7 +77,7 @@
 
 
     
-        </form>
+        </form> -->
         
 <!-- 
         <pre>{{StationsFormArray.value | json}} </pre> -->
@@ -86,15 +86,20 @@
       <hr>
       
         <div class="ngxFormlyExample"> 
-      <form [formGroup]="form" (ngSubmit)="submit(model)">
-        <formly-form [form]="form" [fields]="fields" [model]="model"  [options]="options"></formly-form>
-     
+      <form [formGroup]="form" (ngSubmit)="submit(model)" >
+          
+        
+         
+        <formly-form  [form]="form" [fields]="fields" [model]="model"  [options]="options"></formly-form>
+  
       </form>
     </div>
 
+    
 
-            <pre>{{model.value | json}} </pre>
-                  <pre>{{form.value |json }} </pre>
+
+            <!-- <pre>{{model | json}} </pre> -->
+                
                  
 
 

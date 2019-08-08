@@ -6,6 +6,7 @@ import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { AddSegmentsService } from '../service/add-segments.service'
 import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
+import { isNgTemplate } from '@angular/compiler';
 
 // export interface inputs {
 //   value?: string;
@@ -25,7 +26,7 @@ export class SegmentComponent implements OnInit {
   StationsFormArray: FormGroup
 
 
-  constructor(private AddSegmentsService: AddSegmentsService, private fb: FormBuilder) {
+  constructor(private AddSegmentsService: AddSegmentsService, private fb: FormBuilder, ) {
 
     this.StationsFormArray = this.fb.group({
       segment: fb.array([
@@ -40,7 +41,7 @@ export class SegmentComponent implements OnInit {
       ])
     })
 
-
+// this.onChange(event)
   }
 
 
@@ -107,7 +108,7 @@ export class SegmentComponent implements OnInit {
     this.AddSegmentsService.getRouteNumber()
       .subscribe(
         (response) => {
-          this.route = response,
+         this.route = response,
             console.log(this.route)
         },
         error => console.log(error)
@@ -125,24 +126,43 @@ export class SegmentComponent implements OnInit {
       )
   }
 
-
-
-  form = new FormGroup({});
-  model: any = {
-
-    investments: [{}]
-    
-
+  ShowTable(){
+    this.fields = this.getFields();
   }
+
+  onChange(event): void {
+
+    const newVal: string = event.target.value;
+
+    this.AddSegmentsService.getAdminRoute(newVal)
+      .subscribe(
+        (response) => {
+
+          this.model.stationsNumbers = response
+          console.log(this.model.stationsNumbers);
+
+          // this.segmentSelectId = this.segmentSelect.map(item => item.id),
+          // console.log(this.segmentSelectId, "segment select")
+
+        },
+        (error) => console.log(error)
+      )
+
+  return this.model.stationsNumbers
+  }
+
+
 
 
   options: FormlyFormOptions = {};
 
   // tslint:disable-next-line: member-ordering
-  fields: FormlyFieldConfig[] =
+
+  getFields(){
+  const fields: FormlyFieldConfig[] =
     [
       {
-        key: 'investments',
+        key: 'stationsNumbers',
         type: 'repeat',
         templateOptions: {
           addText: 'Add another investment',
@@ -210,29 +230,15 @@ export class SegmentComponent implements OnInit {
       }
     ]
 
-
-
-
-    onChange(event): void {
-
-    const newVal: string = event.target.value;
-
-    this.AddSegmentsService.getAdminRoute(newVal)
-      .subscribe(
-        (response) => {
-
-          this.segmentSelect = response
-          console.log(this.segmentSelect, this.segmentSelect.length);
-
-          // this.segmentSelectId = this.segmentSelect.map(item => item.id),
-          // console.log(this.segmentSelectId, "segment select")
-
-        },
-        (error) => console.log(error)
-      )
-
-
+    return fields
   }
+
+    form = new FormGroup({});
+    model: any = {
+  
+    }
+    fields: FormlyFieldConfig[] = []
+   
   busSelect(event): void {
     const newVal: string = event.target.value;
     this.busId = newVal;
