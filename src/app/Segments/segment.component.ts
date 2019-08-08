@@ -28,17 +28,17 @@ export class SegmentComponent implements OnInit {
   constructor(private AddSegmentsService: AddSegmentsService, private fb: FormBuilder) {
 
     this.StationsFormArray = this.fb.group({
-    segment: fb.array([
-      this.fb.group({
-        tripNumber: [''],
-        routeSegmentId: [''],
-        timeDeparture: [''],
-        timeArrival: [''],
-        segmentPrice: [''],
-        busId: ['']
-      })
-    ])
-  })
+      segment: fb.array([
+        this.fb.group({
+          tripNumber: [''],
+          routeSegmentId: [''],
+          timeDeparture: [''],
+          timeArrival: [''],
+          segmentPrice: [''],
+          busId: ['']
+        })
+      ])
+    })
 
 
   }
@@ -129,59 +129,83 @@ export class SegmentComponent implements OnInit {
 
   form = new FormGroup({});
   model: any = {
+
+    investments: [{}]
+    
+
   }
+
+
   options: FormlyFormOptions = {};
 
   // tslint:disable-next-line: member-ordering
   fields: FormlyFieldConfig[] =
     [
       {
-        
-        key: 'tripnumber',
-        type: 'input',
-        className: 'col-lg-2',
+        key: 'investments',
+        type: 'repeat',
         templateOptions: {
-          label: 'Номер Рейса'
-        }
-      },
-      {
-        className: 'col-lg-2',
-        key: 'routeSegmentId',
-        type: 'input',
-        templateOptions: {
-          label: 'Номер Сегмента'
-        }
-      },
-      {
-        className: 'col-lg-2',
-        key: 'timeDeparture',
-        type: 'input',
-        templateOptions: {
-          label: 'Дата и Время отправления "2019-08-01 18:10"'
-        }
-      },
-      {
-        className: 'col-lg-2',
-        key: 'timeArrival',
-      type: 'input',
-        templateOptions: {
-          label: 'Дата и Время прибытия в формате "2019-08-02 02:00"'
-        }
-      },
-      {
-        className: 'col-lg-2',
-        key: 'segmentPrice',
-        type: 'input',
-        templateOptions: {
-          label: 'Цена сегмента '
-        }
-      },
-      {
-        className: 'col-lg-2',
-        key: 'busId',
-        type: 'input',
-        templateOptions: {
-          label: 'Id автобуса'
+          addText: 'Add another investment',
+        },
+        fieldArray: {
+          fieldGroupClassName: 'row',
+          fieldGroup: [
+            {
+
+              key: 'tripnumber',
+              type: 'input',
+              className: 'col-lg-2',
+              templateOptions: {
+                label: 'Номер Рейса'
+              }
+            },
+            {
+
+              key: 'routeSegmentId',
+              type: 'input',
+              className: 'col-lg-2',
+              templateOptions: {
+                label: 'Номер Сегмента'
+              }
+            },
+            {
+
+              key: 'timeDeparture',
+              type: 'input',
+              className: 'col-lg-2',
+              templateOptions: {
+                label: 'Дата и Время отправления "2019-08-01 18:10"'
+              }
+            },
+            {
+
+              key: 'timeArrival',
+              type: 'input',
+              className: 'col-lg-2',
+              templateOptions: {
+                label: 'Дата и Время прибытия в формате "2019-08-02 02:00"'
+              }
+            },
+            {
+
+              key: 'segmentPrice',
+              type: 'input',
+              className: 'col-lg-2',
+              templateOptions: {
+                label: 'Цена сегмента '
+              }
+            },
+            {
+
+              key: 'busId',
+              type: 'input',
+              className: 'col-lg-2',
+              templateOptions: {
+                label: 'Id автобуса'
+              }
+            }
+          ]
+
         }
       }
     ]
@@ -189,9 +213,7 @@ export class SegmentComponent implements OnInit {
 
 
 
-
-
-  public onChange(event): void {
+    onChange(event): void {
 
     const newVal: string = event.target.value;
 
@@ -216,6 +238,10 @@ export class SegmentComponent implements OnInit {
     this.busId = newVal;
   }
 
+
+  showFileds() {
+    console.log(this.model)
+  }
   createNewTrips() {
 
 

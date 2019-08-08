@@ -79,15 +79,15 @@
     
         </form>
         
-
-        <pre>{{StationsFormArray.value | json}} </pre>
+<!-- 
+        <pre>{{StationsFormArray.value | json}} </pre> -->
        
    
       <hr>
       
         <div class="ngxFormlyExample"> 
       <form [formGroup]="form" (ngSubmit)="submit(model)">
-        <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+        <formly-form [form]="form" [fields]="fields" [model]="model"  [options]="options"></formly-form>
      
       </form>
     </div>
@@ -95,7 +95,10 @@
 
             <pre>{{model.value | json}} </pre>
                   <pre>{{form.value |json }} </pre>
-    <button type="submit" class="btn btn-default">Submit</button>
+                 
+
+
+    <button type="submit" class="btn btn-default" (click)="showFileds()">Submit</button>
 
         <div class="buttonsAddCansel" style="margin-top:20px;">
             <button type="button" class="btn btn-primary" (click)="createNewTrips()">Добавить</button>
