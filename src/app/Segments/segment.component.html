@@ -6,13 +6,13 @@
      
 
         <div class="selectStations" >
-          <select class="custom-select col-lg-2" id="inputGroupSelect01"  style="margin-top:10px;" (change)="onChange($event)" >
+          <select class="custom-select col-lg-2" id="inputGroupSelect01" (change)="onChange($event)" >
             <option selected disabled>Выберите маршрут</option>
         <option *ngFor="let routeTitle of route" value={{routeTitle.id}}>  {{routeTitle.title}} </option>
 
           </select>
           
-       <button (click)="ShowTable()"> Show Table </button>
+       <button (click)="ShowTable()" class="btn btn-primary" style="margin-left:20px;">Показать Сегменты по Названию Маршрута </button>
         </div>
        
 
@@ -98,7 +98,6 @@
     
 
 
-            <!-- <pre>{{model | json}} </pre> -->
                 
                  
 

@@ -6,11 +6,9 @@ import { FieldArrayType } from '@ngx-formly/core';
   selector: 'formly-repeat-section',
   template: `
     <div *ngFor="let field of field.fieldGroup; let i = index;" class="row">
-   {{ model.stationsNumber }}
-      <formly-field 
+      <formly-field
       class="col"
       [field]="field"
-      [model]="model"
   ></formly-field>
     </div>
   `,
