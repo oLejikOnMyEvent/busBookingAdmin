@@ -9,10 +9,6 @@ import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { isNgTemplate } from '@angular/compiler';
 import { disableDebugTools } from '@angular/platform-browser';
 
-// export interface inputs {
-//   value?: string;
-//   validator: string;
-// }
 
 @Component({
   selector: 'app-segment',
@@ -29,7 +25,7 @@ export class SegmentComponent implements OnInit {
 
   constructor(private AddSegmentsService: AddSegmentsService, private fb: FormBuilder, ) {
 
- 
+
   }
 
   route: any;
@@ -51,7 +47,7 @@ export class SegmentComponent implements OnInit {
       .subscribe(
         (response) => {
           this.route = response
-            // console.log(this.route)
+          // console.log(this.route)
         },
         error => console.log(error)
       )
@@ -62,7 +58,7 @@ export class SegmentComponent implements OnInit {
       .subscribe(
         (response) => {
           this.busSelector = response
-        
+
         },
         error => console.log(error)
       )
@@ -83,7 +79,7 @@ export class SegmentComponent implements OnInit {
           this.model.stationsNumbers = response
           console.log(this.model.stationsNumbers);
 
-  
+
 
         },
         (error) => console.log(error)
@@ -102,30 +98,30 @@ export class SegmentComponent implements OnInit {
   getFields() {
 
     const fields: FormlyFieldConfig[] =
-      [ 
+      [
         {
-        key: 'tripNumOne',
-        type: 'input',
-        templateOptions: {
-          label: 'Номер Рейса',
+          key: 'tripNumOne',
+          type: 'input',
+          templateOptions: {
+            label: 'Номер Рейса',
+          },
         },
-      },
-      {
-        key: 'busIdOne',
-        type: 'select',
-        className: 'col-lg-2',
-        templateOptions: {
-          label: 'Id автобуса',
-          options:[
+        {
+          key: 'busIdOne',
+          type: 'select',
+          className: 'col-lg-2',
+          templateOptions: {
+            label: 'Id автобуса',
+            options: [
 
-            {label: "60 мест", value:1},
-            {label: "40 мест", value:2}
-         
-          ]
-        
-        }
-      },
-        
+              { label: "60 мест", value: 1 },
+              { label: "40 мест", value: 2 }
+
+            ]
+
+          }
+        },
+
         {
           key: 'stationsNumbers',
           type: 'repeat',
@@ -142,9 +138,9 @@ export class SegmentComponent implements OnInit {
                 templateOptions: {
                   label: 'Название Сегмента',
                   disabled: true
-                            }
+                }
               },
-           
+
               {
 
                 key: 'timeDeparture',
@@ -172,7 +168,7 @@ export class SegmentComponent implements OnInit {
                   label: 'Цена сегмента '
                 }
               },
-           
+
               {
 
                 key: 'id',
@@ -180,9 +176,9 @@ export class SegmentComponent implements OnInit {
                 className: 'col-lg-1',
                 templateOptions: {
                   label: 'Номер Сегмента',
-                  disabled:true
+                  disabled: true
                 },
-                 
+
               }
             ]
 
@@ -211,44 +207,71 @@ export class SegmentComponent implements OnInit {
 
   createNewTrips() {
 
-   let imputsObj: {
-      tripNumber: '',
-      routeSegmentId: '',
-      timeDeparture: '',
-      timeArrival: '',
-      segmentPrice: '',
-      busId: ''
-    }
+    //  let imputsObj: {
+    //     tripNumber: '',
+    //     routeSegmentId: '',
+    //     timeDeparture: '',
+    //     timeArrival: '',
+    //     segmentPrice: '',
+    //     busId: ''
+    //   }
 
     let objModel = this.model
 
-    let objModelBusID = this.model.busIdOne
-    let objModelTripNumOne  = this.model.tripNumOne
-      let objModelStationsNumbers =  this.model.stationsNumbers
 
-      for( let i in objModelStationsNumbers ){
-       objModelStationsNumbers[i].routeSegmentId =objModelStationsNumbers[i].id 
-      delete objModelStationsNumbers[i].id 
-          delete objModelStationsNumbers[i].routeDto
-         delete   objModelStationsNumbers[i].segmentDto
+    let imputsObj = []
+
+
+
+    for (let i in objModel.stationNumbers) {
+      let newObj = {
+        tripNumber: null,
+        routeSegmentId: null,
+        timeDeparture: null,
+        timeArrival: null,
+        segmentPrice: null,
+        busId: null
       }
 
+      newObj.busId = objModel.busOnId
+      newObj.tripNumber = objModel.tripOneNumber,
+        newObj.segmentPrice = objModel.stationNumbers[i].segmentDto.price
+      newObj.timeArrival = objModel.stationNumbers[i].timeArrival
+      newObj.timeDeparture = objModel.stationNumbers[i].timeDeparture
+      newObj.routeSegmentId = objModel.stationNumbers[i].id
+      imputsObj.push(newObj);
+    }
 
-    console.log(objModel, objModelBusID, objModelTripNumOne, objModelStationsNumbers)
+    this.AddSegmentsService.createNewTrip(imputsObj)
+      .subscribe(
+        response => console.log(response),
+        error => console.log(error)
+      )
+
+    //   let objModelBusID = this.model.busIdOne
+    //   let objModelTripNumOne  = this.model.tripNumOne
+    //     let objModelStationsNumbers =  this.model.stationsNumbers
+
+    //     for( let i in objModelStationsNumbers ){
+    //      objModelStationsNumbers[i].routeSegmentId =objModelStationsNumbers[i].id 
+    //     delete objModelStationsNumbers[i].id 
+    //         delete objModelStationsNumbers[i].routeDto
+    //        delete   objModelStationsNumbers[i].segmentDto
 
 
-    // this.AddSegmentsService.createNewTrip(objData)
-    //   .subscribe(
-    //     response => console.log(response),
-    //     error => console.log(error)
-    //   )
+
+
+
   }
 
 
+  // console.log(objModel, objModelBusID, objModelTripNumOne, objModelStationsNumbers)
 
 
 
 }
+
+
 
 
 // busIdOne: 1
