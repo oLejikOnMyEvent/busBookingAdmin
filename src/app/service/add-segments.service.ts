@@ -1,6 +1,8 @@
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -45,8 +47,8 @@ export class AddSegmentsService {
     { id: 2, title: "Mercedes", seatsCount: 80 }
   ]
 
-  getBusList() {
-    return this.http.get('http://localhost:4200/admin/bus')
+  getBusList(): Observable<string[]>  {
+    return this.http.get<string[]>('http://localhost:4200/admin/bus')
   }
 
 

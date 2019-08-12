@@ -54,14 +54,14 @@ export class SegmentComponent implements OnInit {
 
 
 
-    this.AddSegmentsService.getBusList()
-      .subscribe(
-        (response) => {
-          this.busSelector = response
+    // this.AddSegmentsService.getBusList()
+    //   .subscribe(
+    //     (response) => {
+    //       this.busSelector = response
 
-        },
-        error => console.log(error)
-      )
+    //     },
+    //     error => console.log(error)
+    //   )
   }
 
   ShowTable() {
@@ -112,7 +112,7 @@ export class SegmentComponent implements OnInit {
           className: 'col-lg-2',
           templateOptions: {
             label: 'Id автобуса',
-            options:  this.busSelector
+            options: this.AddSegmentsService.getBusList()
 
           }
         },
