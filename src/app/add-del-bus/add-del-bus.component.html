@@ -1,0 +1,84 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="buses">
+          <div >
+          <input type="text"  formControlName="title" > Название автобуса
+        </div>
+        <div style="margin-top: 20px;">
+          <input type="text"  formControlName="seatsCount" > Вместимость
+        </div>
+    
+        <hr>
+       
+    
+
+    
+        </form>
+
+        <div class="" style="margin-top: 20px;">
+          <button class="btn btn-info" (click)="addBus()" > Добавить Автобус </button>
+        </div>
+
+        <!-- <div class="buttonsAddCansel" style="margin-top:20px;">
+          <button type="button" class="btn btn-primary">Создать </button>
+
+      
+        </div> -->
+
+     
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <button class="btn btn-default" (click)="ShowBus()">Показать секцию удаления </button>
+
+  
+  <div class="container-fluid" *ngIf="allBuses">
+
+      <div class="card" [formGroup]="selectBus">
+        <div class="card-body">
+          <!-- <form [formGroup]="buses">
+            <div>
+            <input type="text"  formControlName="title"> Название автобуса
+          </div>
+          <div>
+            <input type="text"  formControlName="seatsCount"> Вместимость
+          </div>
+      
+          <hr>
+         
+      
+  
+      
+          </form> -->
+
+        
+          <select formControlName="choiseBus">  
+       <option selected disabled> Выберите автобус </option>
+              <option *ngFor="let bus of allBuses" [ngValue]="bus.id"> Номер: {{bus.id}} Название: {{bus.title}} Количество Мест {{bus.seatsCount}}</option>
+          </select>
+  
+          <div class="" style="margin-top: 20px;">
+            <button class="btn btn-info"  (click)="DeleteBus()" > Удалить автобус  </button>
+          </div>
+          <!-- (click)="addBus()" -->
+          <!-- <div class="buttonsAddCansel" style="margin-top:20px;">
+            <button type="button" class="btn btn-primary">Создать </button>
+  
+        
+          </div> -->
+  
+       
+  
+        </div>
+  
+  
+      </div>
+    </div>
+</div>

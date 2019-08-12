@@ -13,6 +13,9 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 import { UserListComponent } from '../../userList/user-list.component'
 import { SegmentComponent } from '../../Segments/segment.component'
+
+import {AddDelBusComponent} from '../../add-del-bus/add-del-bus.component'
+import { AddDelStationComponent } from '../../add-del-station/add-del-station.component'
 export const AdminLayoutRoutes: Routes = [
     // {
     //   path: '',
@@ -64,7 +67,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps', component: MapsComponent },
     { path: 'notifications', component: NotificationsComponent },
     { path: 'segments', component: SegmentComponent },
-    { path: 'userlist', component: UserListComponent }
-  
+    { path: 'userlist', component: UserListComponent },
+    {path: 'addDelBus', component: AddDelBusComponent},
+    {path : 'addDelStation', component : AddDelStationComponent}
 
 ];

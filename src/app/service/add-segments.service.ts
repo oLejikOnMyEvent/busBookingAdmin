@@ -45,8 +45,8 @@ export class AddSegmentsService {
     { id: 2, title: "Mercedes", seatsCount: 80 }
   ]
 
-  getBusList(): Observable<any[]> {
-    return this.http.get<{ id: number; title: string; }[]>(this.busAddress);
+  getBusList() {
+    return this.http.get('http://localhost:4200/admin/bus')
   }
 
 

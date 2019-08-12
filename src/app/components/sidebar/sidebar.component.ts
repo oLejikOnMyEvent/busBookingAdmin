@@ -9,12 +9,15 @@ declare interface RouteInfo {
   class: string;
 }
 export const ROUTES: RouteInfo[] = [
-  { path: '/dashboard', title: 'Добавить маршрут', icon: 'dashboard', class: '' },
+  { path: '/dashboard', title: 'Редактировать маршрут', icon: 'dashboard', class: '' },
   { path: '/segments', title: 'Добавить сегмент', icon: 'bookmark', class: '' },
   { path: '/user-profile', title: 'Купленные билеты', icon: 'person', class: '' },
   { path: '/userlist', title: 'Список пользователей', icon: 'account_circle', class: '' },
   { path: '/table-list', title: 'Текущие рейсы', icon: 'content_paste', class: '' },
+  {path: '/addDelBus', title: 'Редактирование Автобусов', icon: 'directions_bus' , class: ''}, 
+  {path: '/addDelStation', title: 'Редактирование Станций', icon: 'ev_station' , class: ' '},
   { path: '/logout', title: 'Выход', icon: 'exit_to_app', class: 'exit_button' }
+
 
 
 ];

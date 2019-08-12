@@ -32,7 +32,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
-import { BasicAuthHtppInterceptorService } from './auth/basic-auth-http-interceptor.service'
+import { BasicAuthHtppInterceptorService } from './auth/basic-auth-http-interceptor.service';
+// import { AddDelStationComponent } from './add-del-station/add-del-station.component';
+// import { AddDelBusComponent } from './add-del-bus/add-del-bus.component'
 
 
 @NgModule({
@@ -58,6 +60,8 @@ import { BasicAuthHtppInterceptorService } from './auth/basic-auth-http-intercep
     AuthComponent,
     LoginComponent,
     LogoutComponent,
+    // AddDelStationComponent,
+    // AddDelBusComponent,
 
   ],
   exports: [

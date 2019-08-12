@@ -56,6 +56,10 @@ export class DashboardComponent implements OnInit {
   selectedObj: string[] = []
 
 
+  routesList = this.fb.group({
+    selectRoute: this.fb.control('')
+  })
+
   public stationsSendObj: FormGroup;
 
 
@@ -68,7 +72,7 @@ export class DashboardComponent implements OnInit {
         this.fb.control('')
       ]),
     })
-   }
+  }
 
   ngOnInit() {
     this.AddNewRouteService.getAllStations()
@@ -83,26 +87,26 @@ export class DashboardComponent implements OnInit {
   }
 
 
- 
+
 
 
 
 
   addNewStationsTest() {
     console.log('tipa new statiosn', this.stationsSendObj.value);
-  
+
 
     const fa = this.stationsSendObj.controls['stations'] as FormArray;
 
 
     fa.push(this.newSelectGroup());
-   
+
   }
 
 
-  newSelectGroup(){
+  newSelectGroup() {
     return new FormControl(' ')
-    
+
   }
 
   DeleteItemFormArray(idx) {
@@ -111,9 +115,9 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  
+
   CreateNewRoute() {
-   // console.log();
+    // console.log();
     this.AddNewRouteService.postAllStations(this.stationsSendObj.value)
       .subscribe(
         response => console.log(response),
@@ -125,6 +129,33 @@ export class DashboardComponent implements OnInit {
 
   ShowData() {
     alert('Вы добавили новый маршрут' + this.routeName)
+  }
+
+
+  routesArr
+  ShowDeleteSection() {
+    this.AddNewRouteService.getAllRoutes()
+      .subscribe(
+        res => this.routesArr = res,
+        err => console.log(err)
+      )
+
+
+  }
+
+  deleteRoute() {
+    console.log(this.routesList.value.selectRoute)
+    this.AddNewRouteService.deleteRoutes(this.routesList.value.selectRoute)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+
+
+      )
+
+
+    alert(`вы удалили маршрут с id: ${this.routesList.value.selectRoute}`)
+    this.routesArr = null
   }
 }
 

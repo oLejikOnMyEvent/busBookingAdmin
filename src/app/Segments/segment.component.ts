@@ -112,12 +112,7 @@ export class SegmentComponent implements OnInit {
           className: 'col-lg-2',
           templateOptions: {
             label: 'Id автобуса',
-            options: [
-
-              { label: "60 мест", value: 1 },
-              { label: "40 мест", value: 2 }
-
-            ]
+            options:  this.busSelector
 
           }
         },
@@ -189,6 +184,11 @@ export class SegmentComponent implements OnInit {
     return fields
   }
 
+
+  submit(){
+    console.log('privet');
+    
+  }
   form = new FormGroup({});
   model: any = {
 
@@ -218,12 +218,11 @@ export class SegmentComponent implements OnInit {
 
     let objModel = this.model
 
-
+    console.log(objModel);
+    
     let imputsObj = []
-
-
-
-    for (let i in objModel.stationNumbers) {
+  
+    for (let i in objModel.stationsNumbers) {
       let newObj = {
         tripNumber: null,
         routeSegmentId: null,
@@ -233,12 +232,12 @@ export class SegmentComponent implements OnInit {
         busId: null
       }
 
-      newObj.busId = objModel.busOnId
-      newObj.tripNumber = objModel.tripOneNumber,
-        newObj.segmentPrice = objModel.stationNumbers[i].segmentDto.price
-      newObj.timeArrival = objModel.stationNumbers[i].timeArrival
-      newObj.timeDeparture = objModel.stationNumbers[i].timeDeparture
-      newObj.routeSegmentId = objModel.stationNumbers[i].id
+      newObj.busId = objModel.busIdOne
+      newObj.tripNumber = objModel.tripNumOne,
+        newObj.segmentPrice = objModel.stationsNumbers[i].segmentDto.price
+      newObj.timeArrival = objModel.stationsNumbers[i].timeArrival
+      newObj.timeDeparture = objModel.stationsNumbers[i].timeDeparture
+      newObj.routeSegmentId = objModel.stationsNumbers[i].id
       imputsObj.push(newObj);
     }
 
@@ -247,6 +246,9 @@ export class SegmentComponent implements OnInit {
         response => console.log(response),
         error => console.log(error)
       )
+
+      alert('Вы успешно добавили новый маршрут')
+    //console.log(imputsObj)
 
     //   let objModelBusID = this.model.busIdOne
     //   let objModelTripNumOne  = this.model.tripNumOne

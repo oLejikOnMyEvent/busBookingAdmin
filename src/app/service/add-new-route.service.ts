@@ -20,8 +20,14 @@ export class AddNewRouteService {
   }
 
   postAllStations(dataObj){
-   
+       return this.http.post(this.addStationsUrl, dataObj)
+  }
 
-    return this.http.post(this.addStationsUrl, dataObj)
+  getAllRoutes(){
+   return this.http.get('http://localhost:4200/admin/route')
+  }
+
+  deleteRoutes(item){
+    return this.http.delete(`http://localhost:4200/admin/route/${item}`)
   }
 }

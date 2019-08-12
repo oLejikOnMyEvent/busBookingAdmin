@@ -18,6 +18,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormlyModule} from '@ngx-formly/core';
 import {FormlyBootstrapModule} from '@ngx-formly/bootstrap';
 import { RepeatTypeComponent } from '../../Segments/repeat-section.type'
+import {AddDelBusComponent} from '../../add-del-bus/add-del-bus.component'
+import { AddDelStationComponent } from '../../add-del-station/add-del-station.component'
+
 
 import {
   MatButtonModule,
@@ -43,6 +46,7 @@ import {
     MatTooltipModule,
     ReactiveFormsModule,
     FormlyBootstrapModule,
+
     FormlyModule.forRoot({
       types: [
         { name: 'repeat', component: RepeatTypeComponent },
@@ -61,6 +65,8 @@ import {
     UpgradeComponent,
     SegmentComponent,
     UserListComponent,
+    AddDelBusComponent,
+    AddDelStationComponent,
     RepeatTypeComponent
   ]
 })
