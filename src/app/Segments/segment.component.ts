@@ -54,14 +54,7 @@ export class SegmentComponent implements OnInit {
 
 
 
-    // this.AddSegmentsService.getBusList()
-    //   .subscribe(
-    //     (response) => {
-    //       this.busSelector = response
-
-    //     },
-    //     error => console.log(error)
-    //   )
+   
   }
 
   ShowTable() {
@@ -112,8 +105,11 @@ export class SegmentComponent implements OnInit {
           className: 'col-lg-2',
           templateOptions: {
             label: 'Id автобуса',
-            options: this.AddSegmentsService.getBusList()
+            options: this.AddSegmentsService.getBusList(),
+            labelProp: 'title',
+            valueProp: 'id'
 
+            
           }
         },
 
@@ -241,12 +237,15 @@ export class SegmentComponent implements OnInit {
       imputsObj.push(newObj);
     }
 
+      // console.log(imputsObj)
+
     this.AddSegmentsService.createNewTrip(imputsObj)
       .subscribe(
         response => console.log(response),
         error => console.log(error)
       )
 
+          
       alert('Вы успешно добавили новый маршрут')
     //console.log(imputsObj)
 
