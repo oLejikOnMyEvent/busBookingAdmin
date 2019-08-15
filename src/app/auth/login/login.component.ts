@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
         this.invalidLogin = false
       },
       error => {
+        alert('Вы ввели неправильное имя или пароль')
         this.invalidLogin = true
 
       }
