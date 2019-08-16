@@ -29,12 +29,9 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { BasicAuthHtppInterceptorService } from './auth/basic-auth-http-interceptor.service';
-// import { AddDelStationComponent } from './add-del-station/add-del-station.component';
-// import { AddDelBusComponent } from './add-del-bus/add-del-bus.component'
 
 
 @NgModule({
@@ -49,19 +46,14 @@ import { BasicAuthHtppInterceptorService } from './auth/basic-auth-http-intercep
     RouterModule,
     AppRoutingModule,
     FormlyModule.forRoot(),
-    // AgmCoreModule.forRoot({
-    //   apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    // }),
-
+ 
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthComponent,
     LoginComponent,
     LogoutComponent,
-    // AddDelStationComponent,
-    // AddDelBusComponent,
+  
 
   ],
   exports: [

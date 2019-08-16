@@ -157,5 +157,9 @@ export class DashboardComponent implements OnInit {
     alert(`вы удалили маршрут с id: ${this.routesList.value.selectRoute}`)
     this.routesArr = null
   }
+
+  ShowInfo(){
+    console.log(this.stationsSendObj['controls'].stations['controls'])
+  }
 }
 

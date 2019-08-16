@@ -181,10 +181,7 @@ export class SegmentComponent implements OnInit {
   }
 
 
-  submit(){
-    console.log('privet');
-    
-  }
+  
   form = new FormGroup({});
   model: any = {
 

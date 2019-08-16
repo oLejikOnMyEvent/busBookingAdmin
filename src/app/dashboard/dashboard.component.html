@@ -54,7 +54,7 @@
         <hr>
        
             <div formArrayName="stations" > 
-          <div class="formSelectors" *ngFor="let stations of stationsSendObj.controls['stations'].controls; let idx=index" > 
+          <div class="formSelectors" *ngFor="let stations of stationsSendObj['controls'].stations['controls']; let idx=index" > 
           
 
 
@@ -81,7 +81,7 @@
 
         <div class="buttonsAddCansel" style="margin-top:20px;">
           <button type="button" class="btn btn-primary" (click)="CreateNewRoute(); ShowData()">Создать </button>
-
+            <!-- <button (click)="ShowInfo()"> Click</button> -->
           <!-- <button type="button" class="btn btn-danger">Отменить</button> -->
         </div>
 
