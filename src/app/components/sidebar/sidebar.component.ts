@@ -16,7 +16,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/table-list', title: 'Текущие рейсы', icon: 'content_paste', class: '' },
   {path: '/addDelBus', title: 'Редактирование Автобусов', icon: 'directions_bus' , class: ''}, 
   {path: '/addDelStation', title: 'Редактирование Станций', icon: 'ev_station' , class: ' '},
-  { path: '/logout', title: 'Выход', icon: 'exit_to_app', class: 'exit_button' }
+  { path: '/logoutAdmin', title: 'Выход', icon: 'exit_to_app', class: 'exit_button' }
 
 
 

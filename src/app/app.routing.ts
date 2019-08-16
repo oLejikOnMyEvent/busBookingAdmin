@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   // {path: 'auth', component: AuthComponent},
   { path: 'loginAdmin', component: LoginComponent },
-  {path: 'logout', component: LogoutComponent}
+  {path: 'logoutAdmin', component: LogoutComponent}
 ];
 
 @NgModule({
